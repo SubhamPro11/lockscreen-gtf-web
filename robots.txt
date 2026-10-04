@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://subhampro11.github.io/lockscreengtf/sitemap.xml

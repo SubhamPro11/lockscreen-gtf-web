@@ -200,26 +200,32 @@
             <polygon points="286,28 278,24 278,32" fill="rgba(230,237,243,0.45)"/>
 
             <!-- Intentional Detail: Dashed bypass line where GIF skips video trimming -->
-            <path d="M 85 18 C 160 2, 450 2, 538 24" stroke="rgba(230,237,243,0.25)" stroke-width="1.5" stroke-dasharray="3 3" fill="none" stroke-linecap="round"/>
-            <text x="310" y="10" class="diag-sublabel" text-anchor="middle">GIF skips edit</text>
+            <path d="M 85 18 C 160 2, 450 2, 538 24" stroke="rgba(230,237,243,0.65)" stroke-width="2" stroke-dasharray="5 4" fill="none" stroke-linecap="round"/>
+            <text x="310" y="11" class="diag-sublabel diag-sublabel-strong" text-anchor="middle">GIF skips edit</text>
 
             <!-- Step 2: Edit -->
             <g class="diag-group">
               <text x="295" y="32" class="diag-num">02</text>
               <text x="317" y="32" class="diag-title">Edit</text>
               <text x="355" y="32" class="diag-sublabel">(videos only)</text>
-              <text x="295" y="52" class="diag-caption">Trim source frames, set resolution and target FPS</text>
+              <text x="295" y="52" class="diag-caption">
+                <tspan x="295" dy="0">Trim source frames,</tspan>
+                <tspan x="295" dy="16">set FPS &amp; resolution</tspan>
+              </text>
             </g>
 
             <!-- Vector 2 -> 3 -->
-            <path d="M 495 28 L 540 28" stroke="rgba(230,237,243,0.3)" stroke-width="1.5" stroke-linecap="round"/>
+            <path d="M 475 28 L 540 28" stroke="rgba(230,237,243,0.3)" stroke-width="1.5" stroke-linecap="round"/>
             <polygon points="546,28 538,24 538,32" fill="rgba(230,237,243,0.45)"/>
 
             <!-- Step 3: Set -->
             <g class="diag-group">
               <text x="555" y="32" class="diag-num">03</text>
               <text x="577" y="32" class="diag-title">Set</text>
-              <text x="555" y="52" class="diag-caption">Nothing is applied until you press Set lock screen</text>
+              <text x="555" y="52" class="diag-caption">
+                <tspan x="555" dy="0">Nothing applied until you</tspan>
+                <tspan x="555" dy="16">press Set lock screen</tspan>
+              </text>
             </g>
 
             <!-- Vector 3 -> 4 -->
@@ -230,13 +236,16 @@
             <g class="diag-group">
               <text x="820" y="32" class="diag-num">04</text>
               <text x="842" y="32" class="diag-title">Applied</text>
-              <text x="820" y="52" class="diag-caption">Applied means cache files were successfully updated</text>
+              <text x="820" y="52" class="diag-caption">
+                <tspan x="820" dy="0">Cache files successfully</tspan>
+                <tspan x="820" dy="16">updated on disk</tspan>
+              </text>
             </g>
 
             <!-- Connector from Set to Second Row -->
-            <path d="M 590 68 L 590 98 L 35 98 L 35 126" stroke="rgba(230,237,243,0.22)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M 590 82 L 590 102 L 35 102 L 35 126" stroke="rgba(230,237,243,0.22)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
             <polygon points="35,132 31,124 39,124" fill="rgba(230,237,243,0.4)"/>
-            <text x="75" y="93" class="diag-sublabel">on Set lock screen:</text>
+            <text x="75" y="97" class="diag-sublabel">on Set lock screen:</text>
 
             <!-- Row 2: What happens on Set -->
             <!-- Step 1: GIF -->
@@ -375,29 +384,35 @@
               </dl>
             </div>
 
-            <!-- Right Column: Before you install (honest prose with single lime left rule) -->
+            <!-- Right Column: Before you install (scannable definition list matching What it does) -->
             <div class="before-you-install-col">
               <h3 class="col-heading">Before you install</h3>
-              <div class="before-you-install-prose">
-                <p>
-                  LockscreenGif requires <strong>Windows 11 24H2+ (x64)</strong>. Earlier Windows releases and Windows 10 do not animate the lock screen cache directory.
-                </p>
-                <p>
-                  You will need the <strong>.NET 10 Desktop Runtime</strong> installed first. The installer does not bundle it.
-                </p>
-                <p>
-                  Your Windows Personalization settings must be set to <strong>Picture</strong> mode. If Windows Spotlight or Slideshow is selected, Windows will override your animation.
-                </p>
-                <p>
-                  Ensure <strong>Animation effects</strong> is turned on in <em>Settings &gt; Accessibility &gt; Visual effects</em>.
-                </p>
-                <p>
-                  On Windows 11 25H2 builds, clicking the lock screen settings button may be required, and a one-time sign-out or restart may be needed before the animation begins looping.
-                </p>
-                <p>
-                  When the app displays <em>Applied</em>, the animation frames have been written directly to the system cache. Windows decides the exact moment to refresh the active lock screen display.
-                </p>
-              </div>
+              <dl class="what-it-does-dl">
+                <div class="dl-row">
+                  <dt>OS Version</dt>
+                  <dd>Requires <strong>Windows 11 24H2+ (x64)</strong>. Windows 10 and older builds do not animate the lock screen cache directory.</dd>
+                </div>
+                <div class="dl-row">
+                  <dt>Runtime</dt>
+                  <dd>Requires the <strong>.NET 10 Desktop Runtime</strong> installed first. The installer does not bundle it.</dd>
+                </div>
+                <div class="dl-row">
+                  <dt>Personalization</dt>
+                  <dd>Windows lock screen mode must be set to <strong>Picture</strong> (not Windows Spotlight or Slideshow).</dd>
+                </div>
+                <div class="dl-row">
+                  <dt>Visual Effects</dt>
+                  <dd>Ensure <strong>Animation effects</strong> is turned on in <em>Settings &gt; Accessibility &gt; Visual effects</em>.</dd>
+                </div>
+                <div class="dl-row">
+                  <dt>Windows 11 25H2</dt>
+                  <dd>May require clicking the in-app feature toggle and performing a one-time sign-out or restart.</dd>
+                </div>
+                <div class="dl-row">
+                  <dt>Display Update</dt>
+                  <dd><em>Applied</em> indicates cache write success; Windows decides the exact moment to refresh the active display.</dd>
+                </div>
+              </dl>
             </div>
           </div>
         </div>
@@ -505,11 +520,11 @@
                 <dd class="settings-req">
                   <div class="setting-item">
                     <span class="setting-key">Lock screen mode:</span>
-                    <span class="setting-val"><strong>Picture</strong> (not Windows Spotlight or Slideshow)</span>
+                    <span class="setting-val">Picture (not Windows Spotlight or Slideshow)</span>
                   </div>
                   <div class="setting-item">
                     <span class="setting-key">Animation effects:</span>
-                    <span class="setting-val"><strong>On</strong> (<em>Settings &gt; Accessibility &gt; Visual effects</em>)</span>
+                    <span class="setting-val">On (<em>Settings &gt; Accessibility &gt; Visual effects</em>)</span>
                   </div>
                 </dd>
               </div>
@@ -788,9 +803,9 @@
         <!-- Issue Reporting Box -->
         <div class="report-issue-cta">
           <div>
-            <h4 style="font-family: var(--font-mono); font-size: var(--text-base); margin-bottom: var(--space-1);">
+            <h3 style="font-family: var(--font-mono); font-size: var(--text-base); margin-bottom: var(--space-1);">
               Encountered a bug not listed here?
-            </h4>
+            </h3>
             <p style="font-size: var(--text-xs); margin: 0; color: var(--color-text-secondary);">
               Include your sanitized diagnostic report when opening a ticket on GitHub.
             </p>

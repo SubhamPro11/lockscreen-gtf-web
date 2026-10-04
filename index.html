@@ -131,10 +131,11 @@
             </a>
           </div>
 
-          <!-- Sentence-formatted requirements and release summary (no middle dots) -->
-          <p class="hero-summary-line" id="hero-summary-line">
-            Requires 64-bit Windows 11 24H2 or later and the <a href="https://dotnet.microsoft.com/download/dotnet/10.0" target="_blank" rel="noopener noreferrer">.NET 10 Desktop Runtime</a>.
-          </p>
+          <!-- Prominent compatibility advisory callout -->
+          <div class="hero-summary-line" id="hero-summary-line" role="note" aria-label="System requirements">
+            <span class="summary-badge">Requirements</span>
+            <span>Windows 11 24H2+ (x64) and <a href="https://dotnet.microsoft.com/download/dotnet/10.0" target="_blank" rel="noopener noreferrer">.NET 10 Desktop Runtime</a></span>
+          </div>
 
           <!-- Quiet non-Windows notice (toggled via JS on macOS/Linux/Android/iOS) -->
           <p class="os-notice" id="os-notice" hidden>
@@ -186,7 +187,7 @@
         <!-- Drawn Flow & System Architecture Diagram (Hand-tuned inline SVG) -->
         <div class="diagram-container" role="region" aria-label="Workflow and architecture sequence diagram">
           <!-- Desktop Horizontal Diagram -->
-          <svg class="diagram-svg diagram-desktop" viewBox="0 0 1060 215" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Workflow: Choose to Edit, Set, Applied, and privileged cache write sequence">
+          <svg class="diagram-svg diagram-desktop" viewBox="0 -14 1060 236" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Workflow: Choose to Edit, Set, Applied, and privileged cache write sequence">
             <!-- Row 1: Workflow Steps -->
             <!-- Step 1: Choose -->
             <g class="diag-group">
@@ -196,12 +197,12 @@
             </g>
 
             <!-- Vector 1 -> 2 -->
-            <path d="M 215 28 L 280 28" stroke="rgba(230,237,243,0.3)" stroke-width="1.5" stroke-linecap="round"/>
-            <polygon points="286,28 278,24 278,32" fill="rgba(230,237,243,0.45)"/>
+            <path d="M 215 28 L 280 28" stroke="rgba(230,237,243,0.5)" stroke-width="2" stroke-linecap="round"/>
+            <polygon points="286,28 277,23 277,33" fill="rgba(230,237,243,0.6)"/>
 
-            <!-- Intentional Detail: Dashed bypass line where GIF skips video trimming -->
-            <path d="M 85 18 C 160 2, 450 2, 538 24" stroke="rgba(230,237,243,0.65)" stroke-width="2" stroke-dasharray="5 4" fill="none" stroke-linecap="round"/>
-            <text x="310" y="11" class="diag-sublabel diag-sublabel-strong" text-anchor="middle">GIF skips edit</text>
+            <!-- Intentional Detail: Dashed bypass line arched high above Step 02 -->
+            <path d="M 85 18 C 170 -12, 440 -12, 538 24" stroke="rgba(230,237,243,0.7)" stroke-width="2" stroke-dasharray="5 4" fill="none" stroke-linecap="round"/>
+            <text x="310" y="-3" class="diag-sublabel diag-sublabel-strong" text-anchor="middle">GIF skips edit</text>
 
             <!-- Step 2: Edit -->
             <g class="diag-group">
@@ -215,8 +216,8 @@
             </g>
 
             <!-- Vector 2 -> 3 -->
-            <path d="M 475 28 L 540 28" stroke="rgba(230,237,243,0.3)" stroke-width="1.5" stroke-linecap="round"/>
-            <polygon points="546,28 538,24 538,32" fill="rgba(230,237,243,0.45)"/>
+            <path d="M 475 28 L 540 28" stroke="rgba(230,237,243,0.5)" stroke-width="2" stroke-linecap="round"/>
+            <polygon points="546,28 537,23 537,33" fill="rgba(230,237,243,0.6)"/>
 
             <!-- Step 3: Set -->
             <g class="diag-group">
@@ -229,8 +230,8 @@
             </g>
 
             <!-- Vector 3 -> 4 -->
-            <path d="M 755 28 L 805 28" stroke="rgba(230,237,243,0.3)" stroke-width="1.5" stroke-linecap="round"/>
-            <polygon points="811,28 803,24 803,32" fill="rgba(230,237,243,0.45)"/>
+            <path d="M 755 28 L 805 28" stroke="rgba(230,237,243,0.5)" stroke-width="2" stroke-linecap="round"/>
+            <polygon points="811,28 802,23 802,33" fill="rgba(230,237,243,0.6)"/>
 
             <!-- Step 4: Applied -->
             <g class="diag-group">
@@ -242,10 +243,10 @@
               </text>
             </g>
 
-            <!-- Connector from Set to Second Row -->
-            <path d="M 590 82 L 590 102 L 35 102 L 35 126" stroke="rgba(230,237,243,0.22)" stroke-width="1.5" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
-            <polygon points="35,132 31,124 39,124" fill="rgba(230,237,243,0.4)"/>
-            <text x="75" y="97" class="diag-sublabel">on Set lock screen:</text>
+            <!-- Connector from Set to Second Row: High-contrast distinct trigger transition -->
+            <path d="M 590 82 L 590 102 L 35 102 L 35 126" stroke="rgba(57,255,20,0.6)" stroke-width="2" fill="none" stroke-linecap="round" stroke-linejoin="round"/>
+            <polygon points="35,133 30,124 40,124" fill="#39FF14"/>
+            <text x="75" y="97" class="diag-sublabel diag-sublabel-strong" fill="#39FF14">on Set lock screen:</text>
 
             <!-- Row 2: What happens on Set -->
             <!-- Step 1: GIF -->
@@ -255,8 +256,8 @@
             </g>
 
             <!-- Vector B1 -> B2 -->
-            <path d="M 175 148 L 240 148" stroke="rgba(230,237,243,0.3)" stroke-width="1.5" stroke-linecap="round"/>
-            <polygon points="246,148 238,144 238,152" fill="rgba(230,237,243,0.45)"/>
+            <path d="M 175 148 L 240 148" stroke="rgba(230,237,243,0.5)" stroke-width="2" stroke-linecap="round"/>
+            <polygon points="246,148 237,143 237,153" fill="rgba(230,237,243,0.6)"/>
 
             <!-- Step 2: Helper service -->
             <g class="diag-group">
@@ -266,23 +267,29 @@
             </g>
 
             <!-- Vector B2 -> B3 -->
-            <path d="M 505 148 L 565 148" stroke="rgba(230,237,243,0.3)" stroke-width="1.5" stroke-linecap="round"/>
-            <polygon points="571,148 563,144 563,152" fill="rgba(230,237,243,0.45)"/>
+            <path d="M 505 148 L 565 148" stroke="rgba(230,237,243,0.5)" stroke-width="2" stroke-linecap="round"/>
+            <polygon points="571,148 562,143 562,153" fill="rgba(230,237,243,0.6)"/>
 
-            <!-- Step 3: Lock screen cache -->
+            <!-- Step 3: Lock screen cache (wrapped to prevent collision with Win+L) -->
             <g class="diag-group">
               <text x="580" y="152" class="diag-title">Lock screen cache</text>
-              <text x="580" y="172" class="diag-caption">Protected system directory updated with new sequence</text>
+              <text x="580" y="172" class="diag-caption">
+                <tspan x="580" dy="0">Protected cache directory</tspan>
+                <tspan x="580" dy="16">updated with new frames</tspan>
+              </text>
             </g>
 
             <!-- Vector B3 -> B4 (Lime element) -->
-            <path d="M 755 148 L 810 148" stroke="#39FF14" stroke-width="1.5" stroke-linecap="round"/>
-            <polygon points="816,148 808,144 808,152" fill="#39FF14"/>
+            <path d="M 755 148 L 810 148" stroke="#39FF14" stroke-width="2" stroke-linecap="round"/>
+            <polygon points="816,148 807,143 807,153" fill="#39FF14"/>
 
-            <!-- Step 4: Win + L -->
+            <!-- Step 4: Win + L (wrapped to prevent overflow) -->
             <g class="diag-group">
               <text x="825" y="152" class="diag-title diag-lime">Win + L</text>
-              <text x="825" y="172" class="diag-caption">Windows locks and displays animated sequence</text>
+              <text x="825" y="172" class="diag-caption">
+                <tspan x="825" dy="0">Windows locks and displays</tspan>
+                <tspan x="825" dy="16">the animated sequence</tspan>
+              </text>
             </g>
           </svg>
 
@@ -505,9 +512,7 @@
               <div class="prereq-row">
                 <dt>Desktop Runtime</dt>
                 <dd>
-                  <a href="https://dotnet.microsoft.com/download/dotnet/10.0" class="runtime-link" target="_blank" rel="noopener noreferrer">
-                    .NET 10 Desktop Runtime (x64)
-                  </a>
+                  <a href="https://dotnet.microsoft.com/download/dotnet/10.0" class="runtime-link" target="_blank" rel="noopener noreferrer">.NET 10 Desktop Runtime (x64)</a>
                   <span class="prereq-note">Note: The MSI does <strong>not</strong> bundle or install the .NET runtime.</span>
                 </dd>
               </div>
@@ -516,17 +521,12 @@
                 <dd>Administrator approval (UAC) required once during setup/first run.</dd>
               </div>
               <div class="prereq-row">
-                <dt>Windows Settings</dt>
-                <dd class="settings-req">
-                  <div class="setting-item">
-                    <span class="setting-key">Lock screen mode:</span>
-                    <span class="setting-val">Picture (not Windows Spotlight or Slideshow)</span>
-                  </div>
-                  <div class="setting-item">
-                    <span class="setting-key">Animation effects:</span>
-                    <span class="setting-val">On (<em>Settings &gt; Accessibility &gt; Visual effects</em>)</span>
-                  </div>
-                </dd>
+                <dt>Lock screen mode</dt>
+                <dd>Picture (not Windows Spotlight or Slideshow)</dd>
+              </div>
+              <div class="prereq-row">
+                <dt>Animation effects</dt>
+                <dd>On (<em>Settings &gt; Accessibility &gt; Visual effects</em>)</dd>
               </div>
             </dl>
           </div>
@@ -632,7 +632,8 @@
             <span class="code-prompt">&gt;</span>
             <code id="verify-cmd">Get-FileHash .\LockscreenGif-*-x64.msi -Algorithm SHA256</code>
             <button type="button" class="btn-copy-code" id="btn-copy-verify" aria-label="Copy verification command to clipboard">
-              <span class="copy-text">Copy the command</span>
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
+              <span class="copy-text">Copy</span>
             </button>
           </div>
 
@@ -651,12 +652,14 @@
             <a href="https://github.com/SubhamPro11/lockscreengtf/releases" 
                class="btn btn-primary btn-sm" 
                id="sec-btn-msi">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
               <span>Download the installer</span>
               <span class="btn-meta" id="sec-msi-size"></span>
             </a>
             <a href="https://github.com/SubhamPro11/lockscreengtf/releases" 
                class="btn btn-secondary btn-sm" 
                id="sec-btn-zip">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
               <span>Download portable ZIP</span>
               <span class="btn-meta" id="sec-zip-size"></span>
             </a>

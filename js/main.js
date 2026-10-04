@@ -1,11 +1,156 @@
 // LockscreenGif — Client initialization script
 document.addEventListener('DOMContentLoaded', () => {
+  initDevMode();
   initMobileNav();
+  initStickyHeader();
+  initActiveNavObserver();
+  initScreenshotsVisibility();
   detectOperatingSystem();
   initDemoVideo();
+  initLockScreenClock();
   initInstallTabs();
+  initVerifyCopy();
   fetchLiveReleaseData();
 });
+
+/**
+ * Sticky header: gains 1px bottom border only after scroll, and reveals quick download action
+ */
+function initStickyHeader() {
+  const header = document.querySelector('.site-header');
+  const hero = document.getElementById('download');
+  const stickyBtn = document.getElementById('nav-sticky-download');
+  if (!header) return;
+
+  const onScroll = () => {
+    header.classList.toggle('is-scrolled', window.scrollY > 10);
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+
+  if (hero && stickyBtn) {
+    const observer = new IntersectionObserver(([entry]) => {
+      stickyBtn.classList.toggle('is-visible', !entry.isIntersecting);
+    }, { threshold: 0.1 });
+    observer.observe(hero);
+  }
+}
+
+/**
+ * Active nav link indicator on scroll using IntersectionObserver
+ */
+function initActiveNavObserver() {
+  const sections = document.querySelectorAll('main section[id]');
+  const navLinks = document.querySelectorAll('.nav-links .nav-link');
+  if (!sections.length || !navLinks.length) return;
+
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        const id = entry.target.getAttribute('id');
+        navLinks.forEach(link => {
+          const href = link.getAttribute('href');
+          const isMatch = href === `#${id}`;
+          link.classList.toggle('is-active', isMatch);
+        });
+      }
+    });
+  }, { rootMargin: '-20% 0px -65% 0px' });
+
+  sections.forEach(sec => observer.observe(sec));
+}
+
+/**
+ * Enable developer placeholders if URL contains ?dev
+ */
+function initDevMode() {
+  try {
+    const params = new URLSearchParams(window.location.search);
+    if (params.has('dev')) {
+      document.body.classList.add('is-dev-mode');
+    }
+  } catch (e) {
+    // Ignore URL parsing errors
+  }
+}
+
+/**
+ * Setup copy-to-clipboard for PowerShell hash verification command
+ */
+function initVerifyCopy() {
+  const btn = document.getElementById('btn-copy-verify');
+  const code = document.getElementById('verify-cmd');
+  if (!btn || !code) return;
+
+  btn.addEventListener('click', async () => {
+    const textToCopy = code.textContent.trim();
+    try {
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        await navigator.clipboard.writeText(textToCopy);
+      } else {
+        const temp = document.createElement('textarea');
+        temp.value = textToCopy;
+        document.body.appendChild(temp);
+        temp.select();
+        document.execCommand('copy');
+        document.body.removeChild(temp);
+      }
+
+      btn.classList.add('is-copied');
+      const copyTextEl = btn.querySelector('.copy-text');
+      if (copyTextEl) copyTextEl.textContent = 'Copied!';
+      setTimeout(() => {
+        btn.classList.remove('is-copied');
+        if (copyTextEl) copyTextEl.textContent = 'Copy the command';
+      }, 2000);
+    } catch (err) {
+      const copyTextEl = btn.querySelector('.copy-text');
+      if (copyTextEl) copyTextEl.textContent = 'Press Ctrl+C';
+      setTimeout(() => {
+        if (copyTextEl) copyTextEl.textContent = 'Copy the command';
+      }, 2000);
+    }
+  });
+}
+
+/**
+ * Probe screenshot assets: if both images exist, show the section and reveal images.
+ * If in ?dev mode, show intentional mockups. Otherwise keep section completely hidden from visitors.
+ */
+function initScreenshotsVisibility() {
+  const section = document.getElementById('preview');
+  if (!section) return;
+
+  const isDev = document.body.classList.contains('is-dev-mode');
+  if (isDev) {
+    section.removeAttribute('data-needs-assets');
+    return;
+  }
+
+  const img1 = new Image();
+  const img2 = new Image();
+  let loaded = 0;
+
+  const onLoaded = () => {
+    loaded++;
+    if (loaded === 2) {
+      section.removeAttribute('data-needs-assets');
+      const el1 = document.getElementById('img-shot-choose');
+      const el2 = document.getElementById('img-shot-editor');
+      const mock1 = document.getElementById('mockup-shot-choose');
+      const mock2 = document.getElementById('mockup-shot-editor');
+      if (el1) el1.style.display = 'block';
+      if (el2) el2.style.display = 'block';
+      if (mock1) mock1.style.display = 'none';
+      if (mock2) mock2.style.display = 'none';
+    }
+  };
+
+  img1.onload = onLoaded;
+  img2.onload = onLoaded;
+  img1.src = 'assets/shot-choose.png';
+  img2.src = 'assets/shot-editor.png';
+}
 
 /**
  * Fetch latest release from GitHub API with 10-minute sessionStorage caching.
@@ -22,6 +167,13 @@ function fetchLiveReleaseData() {
   const btnZip = document.getElementById('btn-download-zip');
   const metaMsi = document.getElementById('msi-meta');
   const metaZip = document.getElementById('zip-meta');
+  const tabMsiMeta = document.getElementById('tab-msi-meta');
+  const tabZipMeta = document.getElementById('tab-zip-meta');
+  const secBtnMsi = document.getElementById('sec-btn-msi');
+  const secBtnZip = document.getElementById('sec-btn-zip');
+  const secMsiSize = document.getElementById('sec-msi-size');
+  const secZipSize = document.getElementById('sec-zip-size');
+  const verifyCmd = document.getElementById('verify-cmd');
   const releaseBar = document.getElementById('release-info-bar');
   const tagEl = document.getElementById('release-tag-name');
   const dateEl = document.getElementById('release-date');
@@ -78,19 +230,46 @@ function fetchLiveReleaseData() {
     const zipAsset = assets.find(a => a.name && a.name.toLowerCase().endsWith('.zip'));
     const shaAsset = assets.find(a => a.name && (a.name === 'SHA256SUMS' || a.name.endsWith('.sha256')));
 
-    // Update MSI button
-    if (msiAsset && btnMsi) {
-      btnMsi.href = msiAsset.browser_download_url;
-      if (metaMsi && msiAsset.size) {
-        metaMsi.textContent = `(${formatBytes(msiAsset.size)})`;
+    // Update MSI button and tab metadata
+    if (msiAsset) {
+      if (btnMsi) {
+        btnMsi.href = msiAsset.browser_download_url;
+        if (metaMsi && msiAsset.size) {
+          metaMsi.textContent = `(${formatBytes(msiAsset.size)})`;
+        }
+      }
+      if (tabMsiMeta && msiAsset.size) {
+        tabMsiMeta.textContent = `${release.tag_name || '.msi'}, ${formatBytes(msiAsset.size)}`;
+      }
+      if (secBtnMsi) {
+        secBtnMsi.href = msiAsset.browser_download_url;
+        if (secMsiSize && msiAsset.size) {
+          const tagPrefix = release.tag_name ? `${release.tag_name} ` : '';
+          secMsiSize.textContent = `${tagPrefix}(${formatBytes(msiAsset.size)})`;
+        }
+      }
+      if (verifyCmd && msiAsset.name) {
+        verifyCmd.textContent = `Get-FileHash .\\${msiAsset.name} -Algorithm SHA256`;
       }
     }
 
-    // Update ZIP button
-    if (zipAsset && btnZip) {
-      btnZip.href = zipAsset.browser_download_url;
-      if (metaZip && zipAsset.size) {
-        metaZip.textContent = `(${formatBytes(zipAsset.size)})`;
+    // Update ZIP button and tab metadata
+    if (zipAsset) {
+      if (btnZip) {
+        btnZip.href = zipAsset.browser_download_url;
+        if (metaZip && zipAsset.size) {
+          metaZip.textContent = `(${formatBytes(zipAsset.size)})`;
+        }
+      }
+      if (tabZipMeta && zipAsset.size) {
+        tabZipMeta.textContent = `${release.tag_name || '.zip'}, ${formatBytes(zipAsset.size)}`;
+      }
+      if (secBtnZip) {
+        secBtnZip.href = zipAsset.browser_download_url;
+        if (secZipSize && zipAsset.size) {
+          const tagPrefix = release.tag_name ? `${release.tag_name} ` : '';
+          secZipSize.textContent = `${tagPrefix}(${formatBytes(zipAsset.size)})`;
+        }
       }
     }
 
@@ -99,29 +278,34 @@ function fetchLiveReleaseData() {
       shaLink.href = shaAsset.browser_download_url;
     }
 
-    // Render release bar metadata
-    if (releaseBar && release.tag_name) {
-      if (tagEl) tagEl.textContent = release.tag_name;
-      if (dateEl && release.published_at) {
-        const dateObj = new Date(release.published_at);
-        const formattedDate = dateObj.toLocaleDateString('en-US', {
-          month: 'short',
-          day: 'numeric',
-          year: 'numeric'
-        });
-        dateEl.textContent = `· ${formattedDate}`;
-      }
-
-      // Pre-release indicator
-      if (prereleaseBadge) {
-        if (release.prerelease) {
-          prereleaseBadge.removeAttribute('hidden');
-        } else {
-          prereleaseBadge.setAttribute('hidden', '');
+      // Render hero summary line as a natural sentence (no middle dots)
+      const summaryLine = document.getElementById('hero-summary-line');
+      if (summaryLine && release.tag_name) {
+        let dateStr = '';
+        if (release.published_at) {
+          const dateObj = new Date(release.published_at);
+          dateStr = dateObj.toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+            year: 'numeric'
+          });
         }
-      }
 
-      releaseBar.removeAttribute('hidden');
+        const msiSizeStr = msiAsset && msiAsset.size ? formatBytes(msiAsset.size) : '';
+        const zipSizeStr = zipAsset && zipAsset.size ? formatBytes(zipAsset.size) : '';
+
+        const details = [];
+        if (dateStr) details.push(dateStr);
+        if (msiSizeStr && zipSizeStr) {
+          details.push(`${msiSizeStr} MSI, ${zipSizeStr} portable ZIP`);
+        } else if (msiSizeStr) {
+          details.push(`${msiSizeStr} MSI`);
+        }
+
+        const detailsStr = details.length ? ` (${details.join(', ')})` : '';
+
+        summaryLine.innerHTML = `LockscreenGif ${release.tag_name}${detailsStr} requires 64-bit Windows 11 24H2 or later and the <a href="https://dotnet.microsoft.com/download/dotnet/10.0" target="_blank" rel="noopener noreferrer">.NET 10 Desktop Runtime</a>.`;
+      }
     }
   }
 
@@ -231,20 +415,48 @@ function detectOperatingSystem() {
 }
 
 /**
- * Demo video playback & placeholder handling
+ * Lock screen demo video playback handling
  */
 function initDemoVideo() {
   const video = document.getElementById('hero-demo-video');
-  const placeholder = document.getElementById('hero-demo-placeholder');
-
-  if (!video || !placeholder) return;
+  if (!video) return;
 
   video.addEventListener('canplay', () => {
-    placeholder.style.display = 'none';
+    video.play().catch(() => {});
   });
 
   video.addEventListener('error', () => {
-    // Keep placeholder visible if assets/demo.mp4 is missing or fails to decode
-    placeholder.style.display = 'flex';
+    // If video fails or assets/demo.mp4 doesn't exist, keep serene still backdrop
+    video.style.display = 'none';
   });
+}
+
+/**
+ * Lock screen live clock and date formatted to visitor's locale and updated each minute
+ */
+function initLockScreenClock() {
+  const timeEl = document.getElementById('lockscreen-time');
+  const dateEl = document.getElementById('lockscreen-date');
+  if (!timeEl || !dateEl) return;
+
+  function updateClock() {
+    const now = new Date();
+    // Time in visitor's locale format without seconds
+    timeEl.textContent = now.toLocaleTimeString([], {
+      hour: '2-digit',
+      minute: '2-digit'
+    });
+    timeEl.setAttribute('datetime', now.toISOString());
+
+    // Date in visitor's locale format: weekday, month, day
+    dateEl.textContent = now.toLocaleDateString(undefined, {
+      weekday: 'long',
+      month: 'long',
+      day: 'numeric'
+    });
+  }
+
+  updateClock();
+  // Check every 10 seconds so clock flips accurately with system minute
+  setInterval(updateClock, 10000);
 }

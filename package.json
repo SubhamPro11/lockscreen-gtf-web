@@ -1,0 +1,10 @@
+{
+  "name": "lockscreengif-website",
+  "version": "1.0.0",
+  "description": "Static download website for LockscreenGif",
+  "scripts": {
+    "dev": "npx -y serve . -l 3000",
+    "start": "npx -y serve . -l 3000"
+  },
+  "license": "MIT"
+}

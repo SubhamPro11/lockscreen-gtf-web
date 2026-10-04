@@ -9,5 +9,9 @@ Thumbs.db
 # Local test servers
 *.log
 
+# Dependencies and Cloudflare Wrangler
+node_modules/
+.wrangler/
+
 # Agent customizations
 .agents/

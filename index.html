@@ -17,48 +17,47 @@
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
-  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2338bdf8'><path d='M19 11h-1V7A6 6 0 0 0 6 7v4H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2zM8 7a4 4 0 0 1 8 0v4H8V7zm4 8.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/></svg>">
+  <meta name="theme-color" content="#0a0e14">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%2339ff14'><path d='M19 11h-1V7A6 6 0 0 0 6 7v4H5a2 2 0 0 0-2 2v7a2 2 0 0 0 2 2h14a2 2 0 0 0 2-2v-7a2 2 0 0 0-2-2zM8 7a4 4 0 0 1 8 0v4H8V7zm4 8.5a1.5 1.5 0 1 1 0-3 1.5 1.5 0 0 1 0 3z'/></svg>">
 </head>
-<body>
+<body id="top">
 
-  <!-- Sticky Glassmorphic Header -->
+  <!-- Accessible Skip Link -->
+  <a href="#main-content" class="skip-link">Skip to main content</a>
+
+  <!-- NoScript Fallback Notice -->
+  <noscript>
+    <div class="noscript-banner">
+      JavaScript is disabled. Direct downloads, requirements, and documentation are fully functional.
+    </div>
+  </noscript>
+
+  <!-- Sticky Terminal Header -->
   <header class="site-header" id="site-header">
     <div class="container nav-container">
-      <a href="#" class="site-logo" aria-label="LockscreenGif Home">
-        <div class="logo-icon" aria-hidden="true">
-          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
-            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"></rect>
-            <path d="M7 11V7a5 5 0 0 1 10 0v4"></path>
-          </svg>
-        </div>
-        <span>LockscreenGif</span>
+      <a href="#top" class="site-logo" aria-label="lockscreen-gif home">
+        <span class="prompt-char" aria-hidden="true">&gt;</span>
+        <span>lockscreen-gif</span>
+        <span class="cursor-blink" aria-hidden="true">_</span>
       </a>
 
-      <!-- Desktop Navigation Menu -->
+      <!-- Primary Navigation Menu -->
       <nav aria-label="Primary Navigation">
         <ul class="nav-links" id="primary-nav">
-          <li><a href="#how-it-works" class="nav-link">How it works</a></li>
-          <li><a href="#features" class="nav-link">Features</a></li>
-          <li><a href="#screenshots" class="nav-link">Screenshots</a></li>
-          <li><a href="#specs" class="nav-link">Specs</a></li>
-          <li><a href="#faq" class="nav-link">FAQ</a></li>
+          <li><a href="#how-it-works" class="nav-link">how-it-works</a></li>
+          <li><a href="#requirements" class="nav-link">requirements</a></li>
+          <li><a href="#troubleshooting" class="nav-link">troubleshooting</a></li>
+          <li><a href="#opensource" class="nav-link">open-source</a></li>
         </ul>
       </nav>
 
       <!-- Nav Actions -->
       <div class="nav-actions">
-        <a href="#specs" class="btn-nav-download" id="nav-download-btn">
-          <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-            <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.551H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.951-1.801"/>
-          </svg>
-          <span>Download</span>
+        <a href="#requirements" class="btn-nav-download" id="nav-download-btn">
+          <span>Download MSI</span>
         </a>
         <button type="button" class="nav-toggle" id="nav-toggle" aria-label="Toggle navigation menu" aria-expanded="false">
-          <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <line x1="3" y1="12" x2="21" y2="12"></line>
-            <line x1="3" y1="6" x2="21" y2="6"></line>
-            <line x1="3" y1="18" x2="21" y2="18"></line>
-          </svg>
+          <span class="toggle-text">[menu]</span>
         </button>
       </div>
     </div>
@@ -68,471 +67,499 @@
     <!-- Hero Section -->
     <section class="hero-section" id="hero">
       <div class="container hero-grid">
-        <!-- Left: Copy & Call To Action -->
+        <!-- Left: Copy & Actions -->
         <div class="hero-content">
-          <div class="version-pill">
-            <span class="version-dot"></span>
-            <span>v1.0 • Windows 11 only</span>
-          </div>
-
           <h1 class="hero-title">
-            <span>Your lock screen,</span>
-            <span>finally in motion.</span>
+            Windows only lets you set a still image. This tool puts GIFs and videos on your lock screen.
           </h1>
 
           <p class="hero-desc">
-            Windows doesn't support animated lock screens. LockscreenGif brings high-framerate GIFs and videos to your lock screen without background services or battery drain.
+            Windows Settings only accepts static images. LockscreenGif writes frames directly into the protected lock screen image cache through a one-time elevated helper, so the app runs without admin rights or background daemons.
           </p>
 
           <div class="hero-actions">
             <a href="https://github.com/SubhamPro11/lockscreengtf/releases" class="btn-primary" id="hero-btn-download">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
+              <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
                 <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.551H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.951-1.801"/>
               </svg>
-              <span>Download for Windows</span>
+              <span>Download MSI (x64)</span>
             </a>
 
-            <a href="https://github.com/SubhamPro11/lockscreengtf" class="btn-secondary" target="_blank" rel="noopener noreferrer">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
-              </svg>
-              <span>GitHub</span>
+            <a href="https://github.com/SubhamPro11/lockscreengtf/releases" class="btn-secondary" id="hero-btn-zip">
+              <span>Portable ZIP</span>
             </a>
           </div>
 
-          <div class="hero-reassurance">
-            <span>Free • Open source • MSI &amp; Portable ZIP</span>
-          </div>
+          <p class="hero-requirements-note">
+            Requires Windows 11 24H2+ and .NET 10 Desktop Runtime. <a href="#requirements">See full requirements &rarr;</a>
+          </p>
         </div>
 
-        <!-- Right: Windows 11 Hardware Lock Screen Frame with Ambient Glow -->
-        <div class="hero-preview-wrap">
-          <div class="hero-preview-glow" aria-hidden="true"></div>
-
-          <div class="lockscreen-display" id="hero-lockscreen-frame" aria-label="Windows 11 lock screen preview">
-            <!-- Wallpaper layer with User GIF -->
-            <div class="lockscreen-wallpaper">
-              <img src="assets/lockscreen-preview.gif" alt="Animated lock screen preview" id="hero-lockscreen-gif">
+        <!-- Right: Uncut Video Demo Panel (Real asset demo.mp4 with fallback gif, no fake frames/glow) -->
+        <div class="hero-demo-wrap">
+          <figure class="demo-panel">
+            <div class="demo-video-container">
+              <video id="hero-demo-video" autoplay muted loop playsinline width="640" height="360" poster="assets/lockscreen-preview.gif">
+                <source src="assets/demo.mp4" type="video/mp4">
+                <img src="assets/lockscreen-preview.gif" alt="Animated lock screen demonstration" width="640" height="360">
+              </video>
             </div>
-
-            <!-- Scrim -->
-            <div class="lockscreen-scrim" aria-hidden="true"></div>
-
-            <!-- Live Clock & Date Overlay -->
-            <div class="lockscreen-overlay">
-              <time class="lockscreen-time" id="lockscreen-time" datetime="10:42">10:42</time>
-              <div class="lockscreen-date" id="lockscreen-date">Sunday, October 4</div>
-              <div class="lockscreen-hint-capsule">Press Win + L</div>
-            </div>
-          </div>
+          </figure>
+          <figcaption class="demo-caption">
+            Screen capture: selecting media, writing to the lock screen image cache, and previewing with <kbd>Win</kbd> + <kbd>L</kbd>.
+          </figcaption>
         </div>
       </div>
     </section>
 
-    <!-- Section: How It Works (Four Steps) -->
+    <!-- Section: How It Works -->
     <section class="section-wrapper" id="how-it-works">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">How It Works</span>
-          <h2 class="section-title">Four steps from file to lock screen.</h2>
-          <p class="section-subtitle">
-            No background services. No registry hacks. Just clean Windows cache writes.
+          <h2 class="section-title">How media reaches the Windows lock screen</h2>
+        </div>
+
+        <div class="flow-prose">
+          <p>
+            Windows Settings provides no animation options. When you click <em>Set lock screen</em>, LockscreenGif sends frame data to a small privileged background helper. The helper writes the animation frames into the protected Windows lock screen image cache in <code>SystemData</code>, which requires elevated access. The main app itself never needs administrator privileges or continuous background daemons.
           </p>
         </div>
 
-        <div class="steps-grid">
-          <!-- Step 1 -->
-          <div class="step-card">
-            <span class="step-badge">01</span>
-            <h3 class="step-title">Choose</h3>
-            <p class="step-desc">Select any animated GIF or video (.mp4, .webm, .mov) directly from your files.</p>
-          </div>
-
-          <!-- Step 2 -->
-          <div class="step-card">
-            <span class="step-badge">02</span>
-            <h3 class="step-title">Edit</h3>
-            <p class="step-desc">Trim frames, set loop points, adjust playback speed, and preview changes live.</p>
-          </div>
-
-          <!-- Step 3 -->
-          <div class="step-card">
-            <span class="step-badge">03</span>
-            <h3 class="step-title">Set</h3>
-            <p class="step-desc">One-click write to the Windows lock screen image cache with elevated worker safety.</p>
-          </div>
-
-          <!-- Step 4 -->
-          <div class="step-card">
-            <span class="step-badge">04</span>
-            <h3 class="step-title">Applied</h3>
-            <p class="step-desc">Lock your PC (<kbd>Win</kbd> + <kbd>L</kbd>). Your custom animation plays smoothly.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section: Features (6 Cards Grid) -->
-    <section class="section-wrapper" id="features">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Features</span>
-          <h2 class="section-title">Small app. No background bloat.</h2>
-          <p class="section-subtitle">
-            Built specifically for Windows 11 with zero compromise on system performance.
-          </p>
-        </div>
-
-        <div class="features-grid">
-          <!-- Feature 1 -->
-          <div class="feature-card">
-            <span class="feature-badge-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <rect x="4" y="4" width="16" height="16" rx="2"></rect>
-                <rect x="9" y="9" width="6" height="6"></rect>
-                <path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 14h3M1 9h3M1 14h3"></path>
-              </svg>
-            </span>
-            <h3 class="feature-title">Zero idle CPU</h3>
-            <p class="feature-desc">Runs only when configuring. Zero background processes, zero battery impact.</p>
-          </div>
-
-          <!-- Feature 2 -->
-          <div class="feature-card">
-            <span class="feature-badge-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 2v2"></path>
-                <path d="M4.93 4.93l1.41 1.41"></path>
-                <path d="M20 12h2"></path>
-                <path d="M2 12h2"></path>
-                <path d="M17.66 6.34l1.41-1.41"></path>
-                <path d="M12 8a4 4 0 1 0 4 4"></path>
-                <path d="M12 12l3-3"></path>
-                <path d="M3.34 19.07A10 10 0 1 1 20.66 19.07"></path>
-              </svg>
-            </span>
-            <h3 class="feature-title">Full 60fps playback</h3>
-            <p class="feature-desc">Smooth hardware-accelerated playback directly on the native Windows lock screen.</p>
-          </div>
-
-          <!-- Feature 3 -->
-          <div class="feature-card">
-            <span class="feature-badge-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-            </span>
-            <h3 class="feature-title">No admin required</h3>
-            <p class="feature-desc">Operates within standard user permissions. Safe, clean, and completely sandboxed.</p>
-          </div>
-
-          <!-- Feature 4 -->
-          <div class="feature-card">
-            <span class="feature-badge-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
-            </span>
-            <h3 class="feature-title">Precise frame editor</h3>
-            <p class="feature-desc">Built-in timeline trimmer with custom FPS, resolution scaling, and compression.</p>
-          </div>
-
-          <!-- Feature 5 -->
-          <div class="feature-card">
-            <span class="feature-badge-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
-            </span>
-            <h3 class="feature-title">Privacy by design</h3>
-            <p class="feature-desc">100% offline. No analytics, no telemetry, no network calls ever made.</p>
-          </div>
-
-          <!-- Feature 6 -->
-          <div class="feature-card">
-            <span class="feature-badge-icon" aria-hidden="true">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <polyline points="21 8 21 21 3 21 3 8"></polyline>
-                <rect x="1" y="3" width="22" height="5"></rect>
-                <line x1="10" y1="12" x2="14" y2="12"></line>
-              </svg>
-            </span>
-            <h3 class="feature-title">Born portable</h3>
-            <p class="feature-desc">Single standalone executable or clean MSI installer under 15MB.</p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section: Screenshots / Previews -->
-    <section class="section-wrapper" id="screenshots">
-      <div class="container">
-        <div class="section-header">
-          <span class="section-tag">Previews</span>
-          <h2 class="section-title">Minimal, purpose-built screens.</h2>
-          <p class="section-subtitle">
-            Every control has a purpose. No cluttered menus or unnecessary settings.
-          </p>
-        </div>
-
-        <div class="screens-grid">
-          <!-- Screen 1: Choose -->
-          <div class="screen-card">
-            <div class="screen-frame">
-              <div class="screen-mockup-inner">
-                <div class="mockup-top-bar">
-                  <div class="mockup-dots">
-                    <span class="mockup-dot"></span>
-                    <span class="mockup-dot"></span>
-                    <span class="mockup-dot"></span>
-                  </div>
-                  <span class="mockup-tag">01 Choose View</span>
-                </div>
-                <div class="mockup-center-content">
-                  <div class="mockup-icon-wrap">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-                  </div>
-                  <div class="mockup-label">Drag &amp; drop media</div>
-                  <div class="mockup-subtext">Supports .gif, .mp4, .webm, .mov</div>
-                </div>
-                <div></div>
-              </div>
+        <!-- Single Responsive Monospace Flow Diagram (Rendered ONCE, no duplicate copies) -->
+        <div class="flow-diagram" role="region" aria-label="Media execution flow">
+          <div class="flow-step">
+            <div class="flow-step-top">
+              <span class="step-marker">01</span>
+              <h3 class="step-title">Choose</h3>
             </div>
-            <h3 class="screen-info-title">Choose</h3>
-            <p class="screen-info-desc">Select your media from file explorer or drag &amp; drop.</p>
+            <p class="step-desc">
+              Select any GIF or video (<code>.mp4</code>, <code>.webm</code>, <code>.avi</code>, <code>.mov</code>, <code>.mkv</code>). Loops under 10 seconds work best.
+            </p>
           </div>
 
-          <!-- Screen 2: Edit -->
-          <div class="screen-card">
-            <div class="screen-frame">
-              <div class="screen-mockup-inner">
-                <div class="mockup-top-bar">
-                  <div class="mockup-dots">
-                    <span class="mockup-dot"></span>
-                    <span class="mockup-dot"></span>
-                    <span class="mockup-dot"></span>
-                  </div>
-                  <span class="mockup-tag">02 Edit View</span>
-                </div>
-                <div class="mockup-center-content">
-                  <div class="mockup-icon-wrap">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="5 3 19 12 5 21 5 3"/></svg>
-                  </div>
-                  <div class="mockup-label">Timeline Scrubber</div>
-                  <div class="mockup-subtext">Trim range • 60 FPS • Resolution scale</div>
-                </div>
-                <div></div>
-              </div>
+          <div class="flow-divider" aria-hidden="true">&rarr;</div>
+
+          <div class="flow-step">
+            <div class="flow-step-top">
+              <span class="step-marker">02</span>
+              <h3 class="step-title">Edit <span class="step-sub">(videos only)</span></h3>
             </div>
-            <h3 class="screen-info-title">Edit</h3>
-            <p class="screen-info-desc">Fine-tune speed, frame rate, and timeline trimming.</p>
+            <p class="step-desc">
+              Trim duration, adjust FPS, and scale resolution via FFmpeg and Gifski. GIFs skip this editor directly.
+            </p>
           </div>
+
+          <div class="flow-divider" aria-hidden="true">&rarr;</div>
+
+          <div class="flow-step">
+            <div class="flow-step-top">
+              <span class="step-marker">03</span>
+              <h3 class="step-title">Set</h3>
+            </div>
+            <p class="step-desc">
+              Nothing is applied until you click "Set lock screen". A one-time UAC prompt approves the helper service write.
+            </p>
+          </div>
+
+          <div class="flow-divider" aria-hidden="true">&rarr;</div>
+
+          <div class="flow-step">
+            <div class="flow-step-top">
+              <span class="step-marker">04</span>
+              <h3 class="step-title">Applied</h3>
+            </div>
+            <p class="step-desc">
+              Frames are written to the cache. Windows compositor reloads the frame. Press <kbd>Win</kbd> + <kbd>L</kbd> to view.
+            </p>
+          </div>
+        </div>
+
+        <!-- Engineering Limitation & Rough Edge Disclosure -->
+        <div class="flow-callout">
+          <span class="callout-tag">// NOTE ON WINDOWS COMPOSITOR &amp; 25H2</span>
+          <p>
+            "Applied" confirms cache files were written to disk, not that animation has started. Because Windows interfaces with undocumented lock screen internals, playback depends on the OS compositor. On Windows 11 25H2 (build 26200+), an internal feature (ID 38943831) can stop GIFs animating; LockscreenGif includes a toggle in Settings, and a restart may be needed.
+          </p>
         </div>
       </div>
     </section>
 
-    <!-- Section: Specifications & Requirements -->
-    <section class="section-wrapper" id="specs">
+    <!-- Section: Specifications & Requirements (Single Authoritative Location) -->
+    <section class="section-wrapper" id="requirements" data-alias="specs">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Requirements</span>
-          <h2 class="section-title">Check these before you install.</h2>
-          <p class="section-subtitle">
-            Verify compatibility before downloading.
+          <h2 class="section-title">Requirements &amp; verification</h2>
+          <p class="section-desc">
+            All prerequisites in one place. Confirm system compatibility and verify release hashes before running.
           </p>
         </div>
 
-        <div class="specs-grid">
-          <!-- Left: Specs Table -->
-          <div class="specs-card">
-            <h3 class="editions-heading">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                <rect x="2" y="3" width="20" height="14" rx="2" ry="2"></rect>
-                <line x1="8" y1="21" x2="16" y2="21"></line>
-                <line x1="12" y1="17" x2="12" y2="21"></line>
-              </svg>
-              <span>System Specifications</span>
+        <!-- Requirements & Install Layout -->
+        <div class="requirements-grid">
+          <!-- Left Column: System Prerequisites Table -->
+          <div class="req-card">
+            <h3 class="req-card-title">
+              <span class="prompt-char" aria-hidden="true">&gt;</span>
+              <span>System requirements</span>
             </h3>
-            <div class="specs-table">
-              <div class="specs-row">
-                <span class="specs-label">Operating System</span>
-                <span class="specs-value">Windows 11 (21H2 or later)</span>
+
+            <dl class="req-list">
+              <div class="req-row">
+                <dt class="req-term">Operating System</dt>
+                <dd class="req-def">
+                  <strong>Windows 11 24H2+ (build 26100+)</strong>
+                  <span class="req-sub">x64 architecture only (ARM64 and 32-bit are not supported).</span>
+                </dd>
               </div>
-              <div class="specs-row">
-                <span class="specs-label">Architecture</span>
-                <span class="specs-value">x64 (64-bit)</span>
+
+              <div class="req-row">
+                <dt class="req-term">Required Runtime</dt>
+                <dd class="req-def">
+                  <strong>.NET 10 Desktop Runtime (x64)</strong>
+                  <span class="req-sub">
+                    The MSI installer does <em>not</em> bundle this runtime.
+                    <a href="https://dotnet.microsoft.com/download/dotnet/10.0" target="_blank" rel="noopener noreferrer" class="link-inline">
+                      Download from Microsoft &rarr;
+                    </a>
+                  </span>
+                </dd>
               </div>
-              <div class="specs-row">
-                <span class="specs-label">Runtime</span>
-                <span class="specs-value">.NET 8 Desktop Runtime (bundled)</span>
+
+              <div class="req-row">
+                <dt class="req-term">Lock Screen Mode</dt>
+                <dd class="req-def">
+                  <strong>Picture</strong>
+                  <span class="req-sub">Set in <code>Settings &gt; Personalization &gt; Lock screen</code>. Windows Spotlight and Slideshow override cache frames.</span>
+                </dd>
               </div>
-              <div class="specs-row">
-                <span class="specs-label">File Formats</span>
-                <span class="specs-value">GIF, MP4, WebM, MOV</span>
+
+              <div class="req-row">
+                <dt class="req-term">Animation Effects</dt>
+                <dd class="req-def">
+                  <strong>Must be toggled ON</strong>
+                  <span class="req-sub">Set in <code>Settings &gt; Accessibility &gt; Visual effects</code>. Required for lock screen compositor animation.</span>
+                </dd>
               </div>
-              <div class="specs-row">
-                <span class="specs-label">Permissions</span>
-                <span class="specs-value">Standard user (no UAC required)</span>
+
+              <div class="req-row">
+                <dt class="req-term">User Permissions</dt>
+                <dd class="req-def">
+                  <strong>Standard user + one-time UAC</strong>
+                  <span class="req-sub">The main application runs without admin rights; the privileged helper requires UAC approval once to write system cache files.</span>
+                </dd>
               </div>
-              <div class="specs-row">
-                <span class="specs-label">Storage</span>
-                <span class="specs-value">Under 15MB disk space</span>
+            </dl>
+          </div>
+
+          <!-- Right Column: Installation Methods -->
+          <div class="req-card">
+            <h3 class="req-card-title">
+              <span class="prompt-char" aria-hidden="true">&gt;</span>
+              <span>Installation packages</span>
+            </h3>
+
+            <div class="install-methods">
+              <!-- Method 1: MSI -->
+              <div class="install-option">
+                <div class="install-option-head">
+                  <h4 class="install-method-name">01 // Windows Installer (MSI)</h4>
+                  <span class="install-tag">Recommended</span>
+                </div>
+                <p class="install-method-desc">
+                  Installs application binaries, registers the privileged helper service, adds Start Menu shortcuts, and integrates a clean uninstaller into Windows Settings.
+                </p>
+                <div class="install-action">
+                  <a href="https://github.com/SubhamPro11/lockscreengtf/releases" class="btn-primary btn-sm" id="req-btn-msi">
+                    <span>Download MSI (x64)</span>
+                  </a>
+                </div>
+              </div>
+
+              <!-- Method 2: Portable ZIP -->
+              <div class="install-option">
+                <div class="install-option-head">
+                  <h4 class="install-method-name">02 // Portable Package (ZIP)</h4>
+                  <span class="install-tag">No installer</span>
+                </div>
+                <p class="install-method-desc">
+                  Extract the archive to any folder and launch <code>LockscreenGif.exe</code>. The privileged helper will prompt for UAC elevation on first execution.
+                </p>
+                <div class="install-action">
+                  <a href="https://github.com/SubhamPro11/lockscreengtf/releases" class="btn-secondary btn-sm" id="req-btn-zip">
+                    <span>Portable ZIP</span>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
+        </div>
 
-          <!-- Right: Editions -->
-          <div class="specs-card">
-            <h3 class="editions-heading">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16z"/></svg>
-              <span>Included in MSI Package</span>
-            </h3>
-            <ul class="checklist">
-              <li class="check-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Automated desktop shortcut &amp; Start Menu entry</span>
-              </li>
-              <li class="check-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Bundled .NET 8 Desktop Runtime dependencies</span>
-              </li>
-              <li class="check-item">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                <span>Clean uninstaller via Windows Settings</span>
-              </li>
-            </ul>
+        <!-- Terminal Verification Panel -->
+        <div class="terminal-panel">
+          <div class="terminal-header">
+            <div class="terminal-title">
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span>powershell // verify SHA256 checksum</span>
+            </div>
+            <button type="button" class="btn-copy-code" id="btn-copy-cmd" aria-label="Copy PowerShell verification command to clipboard" title="Copy command">
+              <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: none;">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div class="terminal-body">
+            <pre class="terminal-code"><code id="cmd-run">Get-FileHash .\LockscreenGif-*-x64.msi -Algorithm SHA256</code></pre>
+          </div>
+          <div class="terminal-footer">
+            <p>
+              Compare output against the official <code>SHA256SUMS</code> file published on the
+              <a href="https://github.com/SubhamPro11/lockscreengtf/releases" target="_blank" rel="noopener noreferrer" class="link-inline">GitHub Releases page</a>.
+            </p>
+          </div>
+        </div>
 
-            <div class="portable-block">
-              <h3 class="editions-heading">
-                <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                  <path d="M22 19a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5l2 3h9a2 2 0 0 1 2 2z"></path>
-                  <line x1="12" y1="11" x2="12" y2="17"></line>
-                  <line x1="9" y1="14" x2="15" y2="14"></line>
-                </svg>
-                <span>Portable ZIP Edition</span>
-              </h3>
-              <div class="command-pill">
-                <code id="cmd-run">Extract to folder -&gt; run LockscreenGif.exe</code>
-                <button type="button" class="btn-copy-code" id="btn-copy-cmd" title="Copy command" aria-label="Copy command to clipboard">
-                  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-                </button>
-              </div>
-              <ul class="checklist">
-                <li class="check-item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Zero installation needed — unzip and run</span>
+        <!-- SmartScreen Guidance Callout -->
+        <div class="smartscreen-callout">
+          <span class="callout-tag">Note</span>
+          <p>
+            Because LockscreenGif is an independent open-source project without a paid corporate signing certificate, Windows SmartScreen may show an <em>"unrecognized app"</em> warning. Verify the file's SHA256 checksum against the published hash above. Once matched, click <strong>More info</strong> &rarr; <strong>Run anyway</strong>.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section: FAQ & Troubleshooting (Native Semantic <details>) -->
+    <section class="section-wrapper" id="troubleshooting" data-alias="faq">
+      <div class="container">
+        <div class="section-header">
+          <h2 class="section-title">Troubleshooting &amp; common questions</h2>
+          <p class="section-desc">
+            Direct answers to actual setup issues, Windows compositor quirks, and security behavior.
+          </p>
+        </div>
+
+        <div class="troubleshoot-list">
+          <!-- Question 1: Animation not playing / frozen / black screen -->
+          <details class="troubleshoot-item" open>
+            <summary class="troubleshoot-summary">
+              <span class="troubleshoot-prompt" aria-hidden="true">&gt;</span>
+              <span class="troubleshoot-q">Why is my lock screen still static or not animating?</span>
+              <span class="troubleshoot-marker" aria-hidden="true"></span>
+            </summary>
+            <div class="troubleshoot-body">
+              <p>
+                Lock screen animation depends on the Windows compositor and personalization settings. Check these three requirements:
+              </p>
+              <ul class="troubleshoot-checklist">
+                <li>
+                  <strong>Lock screen background mode:</strong> Must be set to <strong>Picture</strong> in <code>Settings &gt; Personalization &gt; Lock screen</code>. Windows Spotlight and Slideshow override custom cache frames.
                 </li>
-                <li class="check-item">
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
-                  <span>Keeps system clean and registry untouched</span>
+                <li>
+                  <strong>Visual effects:</strong> <strong>Animation effects</strong> must be toggled <strong>ON</strong> in <code>Settings &gt; Accessibility &gt; Visual effects</code>. If disabled, Windows suppresses all lock screen motion.
+                </li>
+                <li>
+                  <strong>Windows 11 25H2 (build 26200+):</strong> A Microsoft internal feature (ID <code>38943831</code>) can stop GIFs animating. Enable the built-in compatibility toggle in LockscreenGif Settings, then restart your PC.
                 </li>
               </ul>
             </div>
-          </div>
+          </details>
+
+          <!-- Question 2: Background execution / CPU / battery -->
+          <details class="troubleshoot-item">
+            <summary class="troubleshoot-summary">
+              <span class="troubleshoot-prompt" aria-hidden="true">&gt;</span>
+              <span class="troubleshoot-q">Does LockscreenGif run constantly in the background?</span>
+              <span class="troubleshoot-marker" aria-hidden="true"></span>
+            </summary>
+            <div class="troubleshoot-body">
+              <p>
+                No. LockscreenGif runs only when configuring or changing your lock screen media. When you click <em>Set lock screen</em>, it writes the animation frames to the Windows system cache and immediately terminates. It does not run background daemons, system tray workers, or screen polling loops while your computer is unlocked.
+              </p>
+            </div>
+          </details>
+
+          <!-- Question 3: UAC elevation requirement -->
+          <details class="troubleshoot-item">
+            <summary class="troubleshoot-summary">
+              <span class="troubleshoot-prompt" aria-hidden="true">&gt;</span>
+              <span class="troubleshoot-q">Why does it ask for administrator privileges (UAC)?</span>
+              <span class="troubleshoot-marker" aria-hidden="true"></span>
+            </summary>
+            <div class="troubleshoot-body">
+              <p>
+                Windows stores lock screen image cache files inside a protected system directory (<code>SystemData</code>) that standard user accounts cannot modify. A small elevated helper service performs the disk write, allowing the primary desktop application to operate entirely unprivileged. Administrator approval (UAC) is needed once during helper setup.
+              </p>
+            </div>
+          </details>
+
+          <!-- Question 4: File formats and editor -->
+          <details class="troubleshoot-item">
+            <summary class="troubleshoot-summary">
+              <span class="troubleshoot-prompt" aria-hidden="true">&gt;</span>
+              <span class="troubleshoot-q">What media formats work best?</span>
+              <span class="troubleshoot-marker" aria-hidden="true"></span>
+            </summary>
+            <div class="troubleshoot-body">
+              <p>
+                You can import animated GIFs or video files (<code>.mp4</code>, <code>.webm</code>, <code>.avi</code>, <code>.mov</code>, <code>.mkv</code>). Existing GIFs apply directly without re-encoding. Video files open the built-in editor powered by FFmpeg and Gifski to trim duration, set frame rate, and adjust resolution. Short seamless loops under 10 seconds work best to prevent excessive cache size.
+              </p>
+            </div>
+          </details>
+
+          <!-- Question 5: SmartScreen advisory -->
+          <details class="troubleshoot-item">
+            <summary class="troubleshoot-summary">
+              <span class="troubleshoot-prompt" aria-hidden="true">&gt;</span>
+              <span class="troubleshoot-q">Windows SmartScreen blocked the installer. How do I proceed?</span>
+              <span class="troubleshoot-marker" aria-hidden="true"></span>
+            </summary>
+            <div class="troubleshoot-body">
+              <p>
+                Because LockscreenGif is an independent open-source project without a paid corporate signing certificate, Windows SmartScreen flags newly published releases. Verify the installer's integrity by running <code>Get-FileHash .\LockscreenGif-*-x64.msi -Algorithm SHA256</code> and comparing the output with the <code>SHA256SUMS</code> file on GitHub Releases. Once verified, click <strong>More info</strong> &rarr; <strong>Run anyway</strong>.
+              </p>
+            </div>
+          </details>
+
+          <!-- Question 6: Logs and telemetry -->
+          <details class="troubleshoot-item">
+            <summary class="troubleshoot-summary">
+              <span class="troubleshoot-prompt" aria-hidden="true">&gt;</span>
+              <span class="troubleshoot-q">Where are diagnostic logs stored, and do they contain telemetry?</span>
+              <span class="troubleshoot-marker" aria-hidden="true"></span>
+            </summary>
+            <div class="troubleshoot-body">
+              <p>
+                Diagnostic logs remain strictly local on your machine in <code>AppData</code> and are automatically sanitized upon export. You can export a diagnostic bundle at any time via <code>Settings &gt; Logs &gt; Save logs as ZIP</code> or <code>Diagnostics &gt; Export report</code>. Network requests are made only to GitHub to check for application updates. Optional anonymous usage statistics can be switched off under <code>Settings &gt; Analytics</code>.
+              </p>
+            </div>
+          </details>
+
+          <!-- Question 7: Restoration to default -->
+          <details class="troubleshoot-item">
+            <summary class="troubleshoot-summary">
+              <span class="troubleshoot-prompt" aria-hidden="true">&gt;</span>
+              <span class="troubleshoot-q">How do I remove the animation and revert to my default lock screen?</span>
+              <span class="troubleshoot-marker" aria-hidden="true"></span>
+            </summary>
+            <div class="troubleshoot-body">
+              <p>
+                Open Windows <code>Settings &gt; Personalization &gt; Lock screen</code> and select any standard Windows wallpaper, picture, or Windows Spotlight. Windows immediately replaces the cached animation frames with the standard static image.
+              </p>
+            </div>
+          </details>
         </div>
       </div>
     </section>
 
-    <!-- Section: FAQ -->
-    <section class="section-wrapper" id="faq">
+    <!-- Section: Open Source, Credits & Lineage (Gate 6F) -->
+    <section class="section-wrapper" id="opensource" data-alias="download-section">
       <div class="container">
         <div class="section-header">
-          <span class="section-tag">Frequently Asked</span>
-          <h2 class="section-title">Common questions.</h2>
-          <p class="section-subtitle">
-            Everything you need to know about how LockscreenGif works.
+          <span class="mono-label mono-label-accent">// OPEN SOURCE &amp; LINEAGE</span>
+          <h2 class="section-title">Open source, credits &amp; build guide</h2>
+          <p class="section-desc">
+            Licensed under MIT. Built on open tooling with complete source transparency.
           </p>
         </div>
 
-        <div class="faq-list">
-          <!-- Item 1 -->
-          <div class="faq-item is-open">
-            <button type="button" class="faq-question">
-              <span>Why do GIFs freeze on the lock screen?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="faq-answer">
-              Windows natively converts lock screen backgrounds to static JPEG frames. LockscreenGif dynamically refreshes the frame buffer cache to create smooth motion without triggering high CPU usage.
+        <div class="opensource-grid">
+          <!-- Left: Lineage & Repository Details -->
+          <div class="open-card">
+            <h3 class="open-card-title">
+              <span class="prompt-char" aria-hidden="true">&gt;</span>
+              <span>Project &amp; repository</span>
+            </h3>
+            <p class="open-card-desc">
+              LockscreenGif is free and open-source software distributed under the <strong>MIT License</strong>. This distribution is maintained by <strong>SubhamPro11</strong>, based on the original project by <strong>Leapward-Koex</strong>.
+            </p>
+
+            <div class="open-links-list">
+              <a href="https://github.com/SubhamPro11/lockscreengtf" class="open-link-item" target="_blank" rel="noopener noreferrer">
+                <span class="link-label">Main repository</span>
+                <span class="link-meta">github.com/SubhamPro11/lockscreengtf &rarr;</span>
+              </a>
+              <a href="https://github.com/Leapward-Koex/LockscreenGif" class="open-link-item" target="_blank" rel="noopener noreferrer">
+                <span class="link-label">Upstream project</span>
+                <span class="link-meta">github.com/Leapward-Koex/LockscreenGif &rarr;</span>
+              </a>
+              <a href="https://github.com/SubhamPro11/lockscreengtf/issues" class="open-link-item" target="_blank" rel="noopener noreferrer">
+                <span class="link-label">Bug tracker</span>
+                <span class="link-meta">Report issue on GitHub &rarr;</span>
+              </a>
+              <a href="https://github.com/SubhamPro11/lockscreengtf/blob/master/LICENSE" class="open-link-item" target="_blank" rel="noopener noreferrer">
+                <span class="link-label">Software license</span>
+                <span class="link-meta">MIT License terms &rarr;</span>
+              </a>
             </div>
           </div>
 
-          <!-- Item 2 -->
-          <div class="faq-item">
-            <button type="button" class="faq-question">
-              <span>Does this drain my laptop battery?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="faq-answer">
-              No. Because LockscreenGif does not run as a continuous background daemon while your PC is unlocked, battery usage is completely indistinguishable from standard Windows idle.
-            </div>
-          </div>
+          <!-- Right: Core Dependencies & Attribution -->
+          <div class="open-card">
+            <h3 class="open-card-title">
+              <span class="prompt-char" aria-hidden="true">&gt;</span>
+              <span>Third-party credits</span>
+            </h3>
+            <p class="open-card-desc">
+              Video decoding, conversion, and quantization rely on these open-source tools:
+            </p>
 
-          <!-- Item 3 -->
-          <div class="faq-item">
-            <button type="button" class="faq-question">
-              <span>Does this require administrator privileges?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="faq-answer">
-              No. The main app operates entirely within standard user permissions. A tiny helper worker safely updates the lock screen cache without full UAC prompts during configuration.
-            </div>
-          </div>
-
-          <!-- Item 4 -->
-          <div class="faq-item">
-            <button type="button" class="faq-question">
-              <span>Is there a Mac or Linux version?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="faq-answer">
-              No. LockscreenGif is engineered specifically for the Windows 11 lock screen caching architecture and WinRT APIs.
-            </div>
-          </div>
-
-          <!-- Item 5 -->
-          <div class="faq-item">
-            <button type="button" class="faq-question">
-              <span>How do I revert to my normal lock screen?</span>
-              <svg class="faq-chevron" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"/></svg>
-            </button>
-            <div class="faq-answer">
-              Simply open Windows Settings &gt; Personalization &gt; Lock screen and select any default Windows wallpaper or Windows Spotlight.
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Bottom CTA Banner -->
-    <section class="cta-banner-wrapper" id="download-section">
-      <div class="container">
-        <div class="cta-banner-card">
-          <h2 class="cta-title">Ready to set your animated lock screen?</h2>
-          <p class="cta-subtitle">Free, open source, and takes under 30 seconds to set up.</p>
-          <div class="cta-actions">
-            <a href="https://github.com/SubhamPro11/lockscreengtf/releases" class="btn-primary">
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true">
-                <path d="M0 3.449L9.75 2.1v9.451H0m10.949-9.602L24 0v11.551H10.949M0 12.6h9.75v9.451L0 20.699M10.949 12.6H24V24l-12.951-1.801"/>
-              </svg>
-              <span>Download for Windows</span>
-            </a>
-            <a href="https://github.com/SubhamPro11/lockscreengtf" class="btn-secondary" target="_blank" rel="noopener noreferrer">
-              <span>Explore on GitHub</span>
-            </a>
+            <dl class="credits-list">
+              <div class="credit-row">
+                <dt class="credit-name">FFmpeg</dt>
+                <dd class="credit-desc">
+                  High-performance video frame demuxing, trimming, and audio/video decoding for video container inputs.
+                </dd>
+              </div>
+              <div class="credit-row">
+                <dt class="credit-name">Gifski (Kornel Lesiński)</dt>
+                <dd class="credit-desc">
+                  Cross-platform GIF encoder providing efficient color palette quantization, temporal dithering, and frame compression.
+                </dd>
+              </div>
+              <div class="credit-row">
+                <dt class="credit-name">Microsoft .NET 10</dt>
+                <dd class="credit-desc">
+                  Application framework runtime (requires .NET 10 Desktop Runtime x64 installed on Windows 11).
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Modern Footer -->
+  <!-- Site Footer with Strict Trademark Disclaimer -->
   <footer class="site-footer">
     <div class="container footer-inner">
-      <div class="footer-left">
-        <span class="footer-brand">LockscreenGif</span>
-        <p>Open source software under MIT License • Built specifically for Windows 11</p>
+      <div class="footer-top">
+        <a href="#top" class="footer-logo" aria-label="lockscreen-gif, back to top">
+          <span class="prompt-char" aria-hidden="true">&gt;</span>
+          <span>lockscreen-gif</span>
+          <span class="cursor-blink" aria-hidden="true">_</span>
+        </a>
+        <ul class="footer-links" aria-label="Footer Navigation">
+          <li><a href="https://github.com/SubhamPro11/lockscreengtf/releases" target="_blank" rel="noopener noreferrer">Releases</a></li>
+          <li><a href="https://github.com/SubhamPro11/lockscreengtf" target="_blank" rel="noopener noreferrer">Source</a></li>
+          <li><a href="https://github.com/Leapward-Koex/LockscreenGif" target="_blank" rel="noopener noreferrer">Upstream</a></li>
+          <li><a href="https://github.com/SubhamPro11/lockscreengtf/issues" target="_blank" rel="noopener noreferrer">Report an issue</a></li>
+          <li><a href="https://github.com/SubhamPro11/lockscreengtf/blob/master/LICENSE" target="_blank" rel="noopener noreferrer">MIT License</a></li>
+          <li><a href="https://dotnet.microsoft.com/download/dotnet/10.0" target="_blank" rel="noopener noreferrer">.NET 10 Runtime</a></li>
+        </ul>
       </div>
-      <ul class="footer-links">
-        <li><a href="https://github.com/SubhamPro11/lockscreengtf/releases" target="_blank" rel="noopener noreferrer">Releases</a></li>
-        <li><a href="https://github.com/SubhamPro11/lockscreengtf" target="_blank" rel="noopener noreferrer">Source</a></li>
-        <li><a href="https://github.com/SubhamPro11/lockscreengtf#readme" target="_blank" rel="noopener noreferrer">Docs</a></li>
-        <li><a href="https://github.com/SubhamPro11/lockscreengtf/issues" target="_blank" rel="noopener noreferrer">Report an issue</a></li>
-        <li><a href="https://github.com/SubhamPro11/lockscreengtf/blob/master/LICENSE" target="_blank" rel="noopener noreferrer">License</a></li>
-      </ul>
+
+      <div class="footer-bottom">
+        <p class="footer-copy">
+          Open source software under the MIT License. Original by Leapward-Koex; maintained by SubhamPro11.
+        </p>
+        <p class="footer-disclaimer">
+          Windows is a trademark of Microsoft Corporation. LockscreenGif is an independent open-source utility and is not affiliated with, endorsed by, or sponsored by Microsoft.
+        </p>
+      </div>
     </div>
   </footer>
 

@@ -1,60 +1,125 @@
-# LockscreenGif — Download Website
+# LockscreenGif — Official Web Portal
 
-Static download landing page for **LockscreenGif**, a lightweight Windows desktop utility that sets animated GIFs and videos as the Windows 11 lock screen by writing directly to the protected Windows lock screen image cache.
+[![License: MIT](https://img.shields.io/badge/License-MIT-c9a66b.svg)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Windows%2011%2024H2%2B%20(x64)-1c1f23.svg?logo=windows&logoColor=d9d4c7)](https://github.com/SubhamPro11/lockscreengtf)
+[![Runtime](https://img.shields.io/badge/.NET-10%20Desktop%20Runtime-7f9a8a.svg?logo=dotnet&logoColor=15171a)](https://dotnet.microsoft.com/download/dotnet/10.0)
+[![Deployment](https://img.shields.io/badge/Deployed%20on-Cloudflare%20Workers-f38020.svg?logo=cloudflare&logoColor=white)](https://lockscreen-gtf-web.morbius.workers.dev/)
+[![Lighthouse Accessibility](https://img.shields.io/badge/Lighthouse-100%2F100%20A11y-7f9a8a.svg)](https://lockscreen-gtf-web.morbius.workers.dev/)
 
-## Project Structure
+The official landing, documentation, and distribution website for **LockscreenGif** — a lightweight Windows utility that brings animated GIFs and video loops to the Windows 11 lock screen without running background daemons or resident background processes.
+
+🌐 **Live Website**: [https://lockscreen-gtf-web.morbius.workers.dev](https://lockscreen-gtf-web.morbius.workers.dev)
+
+---
+
+## Overview
+
+Windows Settings natively restricts lock screen backgrounds to static image files. **LockscreenGif** bypasses this restriction by writing animation frames directly into the protected Windows lock screen image cache (`SystemData`) through a one-time elevated helper service.
+
+Once the animation frames are committed, the main application closes completely. The Windows Desktop Compositor handles loop playback natively at zero ongoing CPU/RAM cost.
+
+### Core Utility Specifications
+- **Operating System:** Windows 11 24H2+ (Build 26100+, x64 only).
+- **Runtime Dependency:** Microsoft .NET 10 Desktop Runtime (x64).
+- **Supported Formats:** `.gif`, `.mp4`, `.webm`, `.avi`, `.mov`, `.mkv` (video trimming, frame rate adjustments, and color quantization powered by FFmpeg & Gifski).
+- **Security & Privileges:** Standard user space operation; one-time UAC elevation only when committing frames to system cache.
+
+---
+
+## Web Portal Architecture & Engineering
+
+This website is engineered as a high-performance, accessible static web application built without heavy front-end frameworks or third-party tracking scripts.
 
 ```text
 lockscreen-gif/
-├── index.html        # Main semantic landing page (accessible landmarks, schema, Open Graph)
+├── index.html          # Semantic HTML5 landing page with schema & accessible landmarks
+├── 404.html            # Zero-dependency 404 fallback page
 ├── css/
-│   └── style.css     # Design system (navy #0a0e14, lime #39FF14, modular type & spacing tokens)
+│   └── style.css       # Vintage instrument panel design system (pure vanilla CSS)
 ├── js/
-│   └── main.js       # Live GitHub releases fetcher (10m cache), tab switcher, OS detection
-├── assets/           # Media folder for video demo and workflow screenshots
-├── robots.txt        # Search crawler directives
-└── sitemap.xml       # Canonical XML sitemap
+│   └── main.js         # Lightweight client logic (<5KB: live releases, nav, clipboard)
+├── fonts/              # Self-hosted WOFF2 fonts (IBM Plex Mono & Instrument Sans)
+├── assets/             # Real media assets (demo.mp4 loop, lockscreen-preview.gif)
+├── wrangler.jsonc      # Cloudflare Workers static assets deployment configuration
+├── package.json        # Project scripts & development dependencies
+├── robots.txt          # Search engine crawler directives
+└── sitemap.xml         # Canonical search engine sitemap
 ```
 
-## Running Locally
+### Design Identity: Vintage Instrument Panel
+The visual identity reflects a precision cockpit/laboratory instrument panel:
+- **Chassis Background:** `#15171a` (deep milled graphite).
+- **Panel Surface:** `#1c1f23` (recessed slate cards and terminal blocks).
+- **Metal Seam Borders:** `#30343a` (hairline framing).
+- **Dial Typography:** `#d9d4c7` (warm ivory dial text, 11+:1 contrast ratio).
+- **Muted Legends:** `#8d8f8a` (secondary dial markings and subtext).
+- **Primary Accent:** `#c9a66b` (dull antique brass controls — zero neon).
+- **Secondary Accent:** `#7f9a8a` (cockpit gauge indicator grey-green).
 
-No build step or node package installation is required. You can preview the website with any static file server:
+### Performance & Accessibility Standards
+- **Score:** 100/100 Lighthouse Accessibility compliance.
+- **Payload:** `< 5KB` JavaScript (`js/main.js`), zero framework dependencies.
+- **Privacy:** Self-hosted WOFF2 typography (`IBM Plex Mono` for technical readouts, `Instrument Sans` for prose); zero external Google Fonts or telemetry tracking calls.
+- **Keyboard Navigation:** Explicit visible focus rings, skip-to-content links, and fully navigable disclosure widgets (`<details>`).
+
+---
+
+## Local Development
+
+Preview the web portal locally using Node or Python:
+
+```bash
+# Clone the repository
+git clone https://github.com/SubhamPro11/lockscreen-gtf-web.git
+cd lockscreen-gtf-web
+
+# Run local dev server (Node.js)
+npm run dev
+
+# Or with Python 3
+python -m http.server 3000
+```
+
+Open [http://localhost:3000](http://localhost:3000) in your browser.
+
+---
+
+## Deployment to Cloudflare Workers
+
+The portal is deployed globally on Cloudflare's edge network using Static Assets on Cloudflare Workers:
+
+```bash
+# Preview on local Workers simulator
+npm run preview
+
+# Deploy to Cloudflare Workers production
+npm run deploy
+```
+
+Configuration is defined in [`wrangler.jsonc`](wrangler.jsonc) pointing to the root directory for static asset delivery.
+
+---
+
+## Checksum Verification
+
+To verify the integrity of the downloaded MSI package against official release hashes:
 
 ```powershell
-# Using Python
-python -m http.server 3000
-
-# Or using Node (npx)
-npx serve .
+Get-FileHash .\LockscreenGif-*-x64.msi -Algorithm SHA256
 ```
 
-Then navigate to `http://localhost:3000/` in your browser.
+Compare the resulting SHA256 string against the published hash in the [GitHub Releases](https://github.com/SubhamPro11/lockscreengtf/releases) notes.
 
-## Adding Real Media Captures
+---
 
-Place the following files in the `assets/` directory to replace the dashed placeholder frames:
+## Lineage & Acknowledgements
 
-1. **`assets/demo.mp4`** & **`assets/poster.jpg`**:
-   Compress `Demos/Video Example.mp4` using FFmpeg:
-   ```bash
-   ffmpeg -i "Demos/Video Example.mp4" -c:v libx264 -crf 26 -preset slow -an -movflags +faststart assets/demo.mp4
-   ffmpeg -ss 00:00:01 -i "Demos/Video Example.mp4" -vframes 1 -q:v 2 assets/poster.jpg
-   ```
-2. **`assets/shot-choose.png`**: Screenshot of the file selection view.
-3. **`assets/shot-editor.png`**: Screenshot of the video trimmer/timeline editor view.
+- **Original Application Implementation:** [Leapward-Koex / LockscreenGif](https://github.com/Leapward-Koex/LockscreenGif).
+- **Repository Maintenance & Distribution:** [SubhamPro11 / lockscreengtf](https://github.com/SubhamPro11/lockscreengtf).
+- **Media Transcoding Tooling:** [FFmpeg](https://www.ffmpeg.org/) and [Gifski](https://gif.ski/).
 
-## Live Release Data
+---
 
-The client script ([`js/main.js`](js/main.js)) queries:
-`https://api.github.com/repos/SubhamPro11/lockscreengtf/releases?per_page=1`
+## License
 
-- Automatically maps the latest `.msi`, `.zip`, and `SHA256SUMS` download links to the primary and secondary download buttons.
-- Caches the release response in `sessionStorage` for 10 minutes to respect GitHub API rate limits.
-- Silently falls back to direct repository release links if offline or unauthenticated rate limits occur.
-
-## Attribution & License
-
-- Original software architecture and implementation: [Leapward-Koex](https://github.com/Leapward-Koex/LockscreenGif).
-- Repository distribution and website maintenance: [SubhamPro11](https://github.com/SubhamPro11/lockscreengtf).
-- Video and animation processing: [FFmpeg](https://www.ffmpeg.org/) and [Gifski](https://gif.ski/).
-- Licensed under the [MIT License](https://opensource.org/licenses/MIT).
+Distributed under the [MIT License](LICENSE).

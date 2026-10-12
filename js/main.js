@@ -78,28 +78,32 @@ function copyToClipboard(text) {
 }
 
 function initCopyCommand() {
-  const btn = document.getElementById('btn-copy-cmd');
-  const code = document.getElementById('cmd-run');
-  if (!btn || !code) return;
+  const buttons = document.querySelectorAll('.btn-copy-code');
+  buttons.forEach(btn => {
+    const targetId = btn.getAttribute('data-copy-target') || 'cmd-run';
+    const code = document.getElementById(targetId);
+    if (!code) return;
 
-  const copyIcon = btn.querySelector('.copy-icon');
-  const checkIcon = btn.querySelector('.check-icon');
+    const copyIcon = btn.querySelector('.copy-icon');
+    const checkIcon = btn.querySelector('.check-icon');
+    const defaultLabel = btn.getAttribute('aria-label') || 'Copy command';
 
-  btn.addEventListener('click', async () => {
-    const textToCopy = code.textContent.trim();
-    try {
-      await copyToClipboard(textToCopy);
-    } catch (_) {}
-    if (copyIcon) copyIcon.style.display = 'none';
-    if (checkIcon) checkIcon.style.display = 'inline-block';
-    btn.classList.add('is-copied');
-    btn.setAttribute('aria-label', 'PowerShell command copied to clipboard');
-    setTimeout(() => {
-      if (copyIcon) copyIcon.style.display = 'inline-block';
-      if (checkIcon) checkIcon.style.display = 'none';
-      btn.classList.remove('is-copied');
-      btn.setAttribute('aria-label', 'Copy PowerShell verification command to clipboard');
-    }, 2000);
+    btn.addEventListener('click', async () => {
+      const textToCopy = code.textContent.trim();
+      try {
+        await copyToClipboard(textToCopy);
+      } catch (_) {}
+      if (copyIcon) copyIcon.style.display = 'none';
+      if (checkIcon) checkIcon.style.display = 'inline-block';
+      btn.classList.add('is-copied');
+      btn.setAttribute('aria-label', 'Command copied to clipboard');
+      setTimeout(() => {
+        if (copyIcon) copyIcon.style.display = 'inline-block';
+        if (checkIcon) checkIcon.style.display = 'none';
+        btn.classList.remove('is-copied');
+        btn.setAttribute('aria-label', defaultLabel);
+      }, 2000);
+    });
   });
 }
 

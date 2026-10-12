@@ -20,8 +20,9 @@ Once the animation frames are committed, the main application closes completely.
 
 ### Core Utility Specifications
 - **Operating System:** Windows 11 24H2+ (Build 26100+, x64 only).
-- **Runtime Dependency:** Microsoft .NET 10 Desktop Runtime (x64).
+- **Runtime & UI Framework:** Microsoft .NET 10 Desktop Runtime (x64), WinUI 3 / Windows App SDK, and CommunityToolkit.Mvvm.
 - **Supported Formats:** `.gif`, `.mp4`, `.webm`, `.avi`, `.mov`, `.mkv` (video trimming, frame rate adjustments, and color quantization powered by FFmpeg & Gifski).
+- **Diagnostics & Recovery:** Built-in Diagnostics suite with ETW trace validation, 5s live test countdown, sanitized ZIP bundle export, and one-click removal under `Settings > Remove Animated Lockscreen`.
 - **Security & Privileges:** Standard user space operation; one-time UAC elevation only when committing frames to system cache.
 
 ---
@@ -116,6 +117,7 @@ Compare the resulting SHA256 string against the published hash in the [GitHub Re
 
 - **Original Application Implementation:** [Leapward-Koex / LockscreenGif](https://github.com/Leapward-Koex/LockscreenGif).
 - **Repository Maintenance & Distribution:** [SubhamPro11 / lockscreengtf](https://github.com/SubhamPro11/lockscreengtf).
+- **UI & Architecture Frameworks:** [WinUI 3 / Windows App SDK](https://github.com/microsoft/WindowsAppSDK) & [CommunityToolkit.Mvvm](https://github.com/CommunityToolkit/dotnet).
 - **Media Transcoding Tooling:** [FFmpeg](https://www.ffmpeg.org/) and [Gifski](https://gif.ski/).
 
 ---

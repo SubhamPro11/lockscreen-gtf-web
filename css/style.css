@@ -961,6 +961,11 @@ button {
   white-space: nowrap;
 }
 
+.terminal-code.is-multiline {
+  white-space: pre;
+  line-height: 1.6;
+}
+
 .terminal-code code {
   font-family: inherit;
   color: inherit;

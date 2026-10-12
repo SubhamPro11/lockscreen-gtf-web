@@ -4,16 +4,16 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>LockscreenGif — Animated Lock Screens for Windows 11</title>
-  <meta name="description" content="Set high-framerate animated GIFs and videos as your Windows 11 lock screen without background services or battery drain. Free and open source.">
+  <meta name="description" content="Set high-framerate animated GIFs and videos as your Windows 11 lock screen without background services or battery drain. Native WinUI 3 and .NET 10 desktop app. Free and open source.">
 
   <!-- Open Graph / Social Meta -->
   <meta property="og:type" content="website">
   <meta property="og:title" content="LockscreenGif — Animated Lock Screens for Windows 11">
-  <meta property="og:description" content="Set animated GIFs and videos as your Windows 11 lock screen. Zero background processes, zero battery impact.">
+  <meta property="og:description" content="Set animated GIFs and videos as your Windows 11 lock screen with native WinUI 3. Zero background processes, zero battery impact.">
   <meta property="og:image" content="assets/lockscreen-preview.gif">
   <meta name="twitter:card" content="summary_large_image">
   <meta name="twitter:title" content="LockscreenGif — Animated Lock Screens for Windows 11">
-  <meta name="twitter:description" content="Set animated GIFs and videos as your Windows 11 lock screen. Free and open source.">
+  <meta name="twitter:description" content="Set animated GIFs and videos as your Windows 11 lock screen. Free and open source WinUI 3 desktop utility.">
 
   <!-- Stylesheet -->
   <link rel="stylesheet" href="css/style.css">
@@ -74,7 +74,7 @@
           </h1>
 
           <p class="hero-desc">
-            Windows Settings only accepts static images. LockscreenGif writes frames directly into the protected lock screen image cache through a one-time elevated helper, so the app runs without admin rights or background daemons.
+            Windows Settings only accepts static images. LockscreenGif is a native WinUI 3 desktop application that writes frames directly into the protected lock screen image cache through a one-time elevated helper, so the app runs without admin rights or background daemons.
           </p>
 
           <div class="hero-actions">
@@ -91,7 +91,7 @@
           </div>
 
           <p class="hero-requirements-note">
-            Requires Windows 11 24H2+ and .NET 10 Desktop Runtime. <a href="#requirements">See full requirements &rarr;</a>
+            Built with WinUI 3 for Windows 11 24H2+ (.NET 10 Desktop Runtime). <a href="#requirements">See full requirements &rarr;</a>
           </p>
         </div>
 
@@ -178,7 +178,7 @@
         <div class="flow-callout">
           <span class="callout-tag">// NOTE ON WINDOWS COMPOSITOR &amp; 25H2</span>
           <p>
-            "Applied" confirms cache files were written to disk, not that animation has started. Because Windows interfaces with undocumented lock screen internals, playback depends on the OS compositor. On Windows 11 25H2 (build 26200+), an internal feature (ID 38943831) can stop GIFs animating; LockscreenGif includes a toggle in Settings, and a restart may be needed.
+            "Applied" confirms cache files were written to disk, not that animation has started. Because Windows interfaces with undocumented lock screen internals, playback depends on the OS compositor. On Windows 11 25H2 (build 26200+), an internal feature (ID 38943831) can stop GIFs animating; LockscreenGif includes a built-in toggle directly in Prerequisites and Settings to disable this feature, followed by a system restart.
           </p>
         </div>
       </div>
@@ -222,6 +222,14 @@
                       Download from Microsoft &rarr;
                     </a>
                   </span>
+                </dd>
+              </div>
+
+              <div class="req-row">
+                <dt class="req-term">UI Framework</dt>
+                <dd class="req-def">
+                  <strong>WinUI 3 &amp; Windows App SDK</strong>
+                  <span class="req-sub">Fluent Design UI with integrated video trimmer, diagnostics suite, and settings manager.</span>
                 </dd>
               </div>
 
@@ -424,17 +432,34 @@
             </div>
           </details>
 
-          <!-- Question 6: Logs and telemetry -->
+          <!-- Question 6: Diagnostics panel and bug reporting -->
           <details class="troubleshoot-item">
             <summary class="troubleshoot-summary">
               <span class="troubleshoot-prompt" aria-hidden="true">&gt;</span>
-              <span class="troubleshoot-q">Where are diagnostic logs stored, and do they contain telemetry?</span>
+              <span class="troubleshoot-q">How do I run built-in diagnostics or export an issue report?</span>
               <span class="troubleshoot-marker" aria-hidden="true"></span>
             </summary>
             <div class="troubleshoot-body">
               <p>
-                Diagnostic logs remain strictly local on your machine in <code>AppData</code> and are automatically sanitized upon export. You can export a diagnostic bundle at any time via <code>Settings &gt; Logs &gt; Save logs as ZIP</code> or <code>Diagnostics &gt; Export report</code>. Network requests are made only to GitHub to check for application updates. Optional anonymous usage statistics can be switched off under <code>Settings &gt; Analytics</code>.
+                LockscreenGif includes an integrated <strong>Diagnostics panel</strong> to test compositor behavior, ETW event traces, and cache permissions without external debuggers:
               </p>
+              <ul class="troubleshoot-checklist">
+                <li>
+                  <strong>Open Diagnostics:</strong> Click the <strong>Diagnostics</strong> tab in the navigation bar.
+                </li>
+                <li>
+                  <strong>Select sample media:</strong> Choose your GIF or check <em>Use bundled reference animation</em> to verify baseline functionality.
+                </li>
+                <li>
+                  <strong>Run test cycle:</strong> Click <strong>Start test</strong>. A 5-second countdown will start, and the screen will automatically lock (<kbd>Win</kbd> + <kbd>L</kbd>) so you can observe live playback under the Windows compositor.
+                </li>
+                <li>
+                  <strong>Export sanitized bundle:</strong> Unlock your computer and click <strong>Export report</strong>. LockscreenGif packages a sanitized ZIP archive containing event traces, permission audits, and OS build metadata.
+                </li>
+                <li>
+                  <strong>Attach to GitHub:</strong> Attach the ZIP bundle directly when opening an issue on the <a href="https://github.com/SubhamPro11/lockscreengtf/issues" target="_blank" rel="noopener noreferrer" class="link-inline">GitHub bug tracker</a>.
+                </li>
+              </ul>
             </div>
           </details>
 
@@ -447,7 +472,29 @@
             </summary>
             <div class="troubleshoot-body">
               <p>
-                Open Windows <code>Settings &gt; Personalization &gt; Lock screen</code> and select any standard Windows wallpaper, picture, or Windows Spotlight. Windows immediately replaces the cached animation frames with the standard static image.
+                You can restore the default Windows lock screen at any time using either method:
+              </p>
+              <ul class="troubleshoot-checklist">
+                <li>
+                  <strong>In LockscreenGif:</strong> Open <code>Settings &gt; Remove Animated Lockscreen</code> and click the <strong>Remove</strong> button.
+                </li>
+                <li>
+                  <strong>In Windows Settings:</strong> Open <code>Settings &gt; Personalization &gt; Lock screen</code> and select any standard static picture or Windows Spotlight. Windows immediately restores the default static wallpaper.
+                </li>
+              </ul>
+            </div>
+          </details>
+
+          <!-- Question 8: Display resolution and multi-monitor changes -->
+          <details class="troubleshoot-item">
+            <summary class="troubleshoot-summary">
+              <span class="troubleshoot-prompt" aria-hidden="true">&gt;</span>
+              <span class="troubleshoot-q">Why do black borders or stretching appear after changing monitors or resolution?</span>
+              <span class="troubleshoot-marker" aria-hidden="true"></span>
+            </summary>
+            <div class="troubleshoot-body">
+              <p>
+                When you click <em>Set lock screen</em>, frames are pre-scaled and cropped to match your active primary display resolution. If you change your screen resolution or connect to an external monitor with a different aspect ratio, simply open LockscreenGif and click <strong>Set lock screen</strong> again to re-render and cache frames for the current display.
               </p>
             </div>
           </details>
@@ -501,17 +548,29 @@
           <div class="open-card">
             <h3 class="open-card-title">
               <span class="prompt-char" aria-hidden="true">&gt;</span>
-              <span>Third-party credits</span>
+              <span>Framework &amp; third-party credits</span>
             </h3>
             <p class="open-card-desc">
-              Video decoding, conversion, and quantization rely on these open-source tools:
+              LockscreenGif is built on these foundational open-source technologies:
             </p>
 
             <dl class="credits-list">
               <div class="credit-row">
+                <dt class="credit-name">WinUI 3 &amp; Windows App SDK</dt>
+                <dd class="credit-desc">
+                  Native Windows 11 Fluent UX framework providing hardware-accelerated rendering and modern desktop styling.
+                </dd>
+              </div>
+              <div class="credit-row">
+                <dt class="credit-name">CommunityToolkit.Mvvm</dt>
+                <dd class="credit-desc">
+                  Type-safe, high-performance MVVM architecture with reactive observable bindings and messaging.
+                </dd>
+              </div>
+              <div class="credit-row">
                 <dt class="credit-name">FFmpeg</dt>
                 <dd class="credit-desc">
-                  High-performance video frame demuxing, trimming, and audio/video decoding for video container inputs.
+                  High-performance video frame demuxing, timeline trimming, and audio/video decoding for video container inputs.
                 </dd>
               </div>
               <div class="credit-row">
@@ -523,10 +582,50 @@
               <div class="credit-row">
                 <dt class="credit-name">Microsoft .NET 10</dt>
                 <dd class="credit-desc">
-                  Application framework runtime (requires .NET 10 Desktop Runtime x64 installed on Windows 11).
+                  High-performance application framework runtime (requires .NET 10 Desktop Runtime x64 installed on Windows 11).
                 </dd>
               </div>
             </dl>
+          </div>
+        </div>
+
+        <!-- Terminal Build Guide Panel -->
+        <div class="terminal-panel" style="margin-top: var(--space-4);">
+          <div class="terminal-header">
+            <div class="terminal-title">
+              <span class="terminal-dot" aria-hidden="true"></span>
+              <span>powershell // build from source (.NET 10 + WinUI 3)</span>
+            </div>
+            <button type="button" class="btn-copy-code" id="btn-copy-build" data-copy-target="cmd-build" aria-label="Copy build commands to clipboard" title="Copy build commands">
+              <svg class="copy-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+                <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+                <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+              </svg>
+              <svg class="check-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" style="display: none;">
+                <polyline points="20 6 9 17 4 12"></polyline>
+              </svg>
+            </button>
+          </div>
+          <div class="terminal-body">
+            <pre class="terminal-code is-multiline"><code id="cmd-build"># 1. Clone repository
+git clone https://github.com/SubhamPro11/lockscreengtf.git
+cd lockscreengtf
+
+# 2. Restore dependencies &amp; tools
+dotnet restore
+dotnet tool restore
+
+# 3. Build solution &amp; run regression tests
+dotnet build LockscreenGif.sln -c Release
+Get-ChildItem Tests -Recurse -Filter *.csproj | ForEach-Object { dotnet run --project $_.FullName -c Release }
+
+# 4. Publish standalone desktop application
+dotnet publish LockScreenGif/LockscreenGif.csproj -c Release -p:PublishProfile=FolderProfile</code></pre>
+          </div>
+          <div class="terminal-footer">
+            <p>
+              Prerequisites: Windows 11 x64 (Build 26100+), .NET 10 SDK, Visual Studio 2022/2025 or C# Dev Kit, PowerShell 7+. Verify formatting with <code>./scripts/Format-CSharp.ps1 -Check</code>.
+            </p>
           </div>
         </div>
       </div>

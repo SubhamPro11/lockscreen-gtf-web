@@ -15,28 +15,29 @@ function initStickyHeader() {
 }
 
 function initMobileNav() {
-  const header = document.querySelector('.site-header');
   const toggleBtn = document.getElementById('nav-toggle');
-  const navList = document.getElementById('primary-nav');
-  if (!toggleBtn || !header) return;
+  const mobileNav = document.getElementById('mobile-nav');
+  if (!toggleBtn || !mobileNav) return;
 
-  const toggleText = toggleBtn.querySelector('.toggle-text');
+  const openIcon = toggleBtn.querySelector('.menu-open-icon');
+  const closeIcon = toggleBtn.querySelector('.menu-close-icon');
 
   toggleBtn.addEventListener('click', () => {
-    const isOpen = header.classList.toggle('is-menu-open');
+    const isHidden = mobileNav.classList.toggle('hidden');
+    const isOpen = !isHidden;
     toggleBtn.setAttribute('aria-expanded', String(isOpen));
-    if (toggleText) toggleText.textContent = isOpen ? '[close]' : '[menu]';
+    if (openIcon) openIcon.classList.toggle('hidden', isOpen);
+    if (closeIcon) closeIcon.classList.toggle('hidden', !isOpen);
   });
 
-  if (navList) {
-    navList.querySelectorAll('a').forEach(link => {
-      link.addEventListener('click', () => {
-        header.classList.remove('is-menu-open');
-        toggleBtn.setAttribute('aria-expanded', 'false');
-        if (toggleText) toggleText.textContent = '[menu]';
-      });
+  mobileNav.querySelectorAll('a').forEach(link => {
+    link.addEventListener('click', () => {
+      mobileNav.classList.add('hidden');
+      toggleBtn.setAttribute('aria-expanded', 'false');
+      if (openIcon) openIcon.classList.remove('hidden');
+      if (closeIcon) closeIcon.classList.add('hidden');
     });
-  }
+  });
 }
 
 function initActiveNavObserver() {
@@ -80,7 +81,7 @@ function copyToClipboard(text) {
 function initCopyCommand() {
   const buttons = document.querySelectorAll('.btn-copy-code');
   buttons.forEach(btn => {
-    const targetId = btn.getAttribute('data-copy-target') || 'cmd-run';
+    const targetId = btn.getAttribute('data-copy-target');
     const code = document.getElementById(targetId);
     if (!code) return;
 
@@ -93,13 +94,13 @@ function initCopyCommand() {
       try {
         await copyToClipboard(textToCopy);
       } catch (_) {}
-      if (copyIcon) copyIcon.style.display = 'none';
-      if (checkIcon) checkIcon.style.display = 'inline-block';
+      if (copyIcon) copyIcon.classList.add('hidden');
+      if (checkIcon) checkIcon.classList.remove('hidden');
       btn.classList.add('is-copied');
       btn.setAttribute('aria-label', 'Command copied to clipboard');
       setTimeout(() => {
-        if (copyIcon) copyIcon.style.display = 'inline-block';
-        if (checkIcon) checkIcon.style.display = 'none';
+        if (copyIcon) copyIcon.classList.remove('hidden');
+        if (checkIcon) checkIcon.classList.add('hidden');
         btn.classList.remove('is-copied');
         btn.setAttribute('aria-label', defaultLabel);
       }, 2000);

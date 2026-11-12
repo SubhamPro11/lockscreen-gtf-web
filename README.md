@@ -6,7 +6,7 @@
 [![Deployment](https://img.shields.io/badge/Deployed%20on-Cloudflare%20Workers-f38020.svg?logo=cloudflare&logoColor=white)](https://lockscreen-gtf-web.morbius.workers.dev/)
 [![Lighthouse Accessibility](https://img.shields.io/badge/Lighthouse-100%2F100%20A11y-7f9a8a.svg)](https://lockscreen-gtf-web.morbius.workers.dev/)
 
-The official landing, documentation, and distribution website for **LockscreenGif** — a lightweight Windows utility that brings animated GIFs and video loops to the Windows 11 lock screen without running background daemons or resident background processes.
+The official landing, documentation, and distribution website for **LockscreenGif** — a modern Windows 11 utility that brings animated GIFs and video loops to both the Windows 11 lock screen and live desktop wallpaper without unnecessary overhead.
 
 🌐 **Live Website**: [https://lockscreen-gtf-web.morbius.workers.dev](https://lockscreen-gtf-web.morbius.workers.dev)
 
@@ -14,16 +14,17 @@ The official landing, documentation, and distribution website for **LockscreenGi
 
 ## Overview
 
-Windows Settings natively restricts lock screen backgrounds to static image files. **LockscreenGif** bypasses this restriction by writing animation frames directly into the protected Windows lock screen image cache (`SystemData`) through a one-time elevated helper service.
+**LockscreenGif** offers two powerful desktop personalization features:
 
-Once the animation frames are committed, the main application closes completely. The Windows Desktop Compositor handles loop playback natively at zero ongoing CPU/RAM cost.
+1. **Animated Lock Screen**: Windows natively restricts lock screen backgrounds to static images. LockscreenGif bypasses this restriction by writing animation frames directly into the protected Windows lock screen image cache (`SystemData`) through an isolated, one-time elevated helper service. Once committed, the application closes completely—the Windows Desktop Compositor handles loop playback natively at **zero ongoing CPU/RAM cost**.
+2. **Live Desktop Wallpaper Engine**: Runs videos (`.mp4`, `.webm`, `.avi`, `.mov`, `.mkv`), GIFs, and interactive web/HTML5 applications directly behind Windows desktop icons using hardware-accelerated WebView2 rendering, multi-monitor modes, smart auto-pause rules, and WASAPI audio reactivity.
 
 ### Core Utility Specifications
 - **Operating System:** Windows 11 24H2+ (Build 26100+, x64 only).
 - **Runtime & UI Framework:** Microsoft .NET 10 Desktop Runtime (x64), WinUI 3 / Windows App SDK, and CommunityToolkit.Mvvm.
-- **Supported Formats:** `.gif`, `.mp4`, `.webm`, `.avi`, `.mov`, `.mkv` (video trimming, frame rate adjustments, and color quantization powered by FFmpeg & Gifski).
-- **Diagnostics & Recovery:** Built-in Diagnostics suite with ETW trace validation, 5s live test countdown, sanitized ZIP bundle export, and one-click removal under `Settings > Remove Animated Lockscreen`.
-- **Security & Privileges:** Standard user space operation; one-time UAC elevation only when committing frames to system cache.
+- **Supported Formats:** `.gif`, `.mp4`, `.webm`, `.avi`, `.mov`, `.mkv`, `.html`, web URLs, and static image formats.
+- **Diagnostics & Recovery:** Built-in Diagnostics suite with ETW trace validation, 5s live test simulation, sanitized ZIP bundle export, and safe one-click removal under `Settings > Remove Animated Lockscreen`.
+- **Security & Privileges:** Standard user space operation; one-time UAC elevation only when committing frames to the lock screen system cache.
 
 ---
 

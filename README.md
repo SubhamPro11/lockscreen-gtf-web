@@ -116,8 +116,8 @@ Compare the resulting SHA256 string against the published hash in the [GitHub Re
 
 ## Lineage & Acknowledgements
 
-- **Original Application Implementation:** [Leapward-Koex / LockscreenGif](https://github.com/Leapward-Koex/LockscreenGif).
-- **Repository Maintenance & Distribution:** [SubhamPro11 / lockscreengtf](https://github.com/SubhamPro11/lockscreengtf).
+- **Lead Developer & Maintainer:** [Subham Kumar (SubhamPro11)](https://github.com/SubhamPro11).
+- **Repository & Distribution:** [SubhamPro11 / lockscreengtf](https://github.com/SubhamPro11/lockscreengtf).
 - **UI & Architecture Frameworks:** [WinUI 3 / Windows App SDK](https://github.com/microsoft/WindowsAppSDK) & [CommunityToolkit.Mvvm](https://github.com/CommunityToolkit/dotnet).
 - **Media Transcoding Tooling:** [FFmpeg](https://www.ffmpeg.org/) and [Gifski](https://gif.ski/).
 

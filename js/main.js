@@ -1,10 +1,64 @@
 document.addEventListener('DOMContentLoaded', () => {
+  initThemeSwitcher();
   initStickyHeader();
   initMobileNav();
   initActiveNavObserver();
   initCopyCommand();
   fetchLiveReleaseData();
 });
+
+function initThemeSwitcher() {
+  const STORAGE_KEY = 'lockscreengtf-theme';
+  const html = document.documentElement;
+  const themeButtons = document.querySelectorAll('.theme-segmented-ctrl .theme-pill-btn');
+
+  function getSystemPreference() {
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+
+  function applyTheme(themeChoice) {
+    const effectiveTheme = themeChoice === 'system' ? getSystemPreference() : themeChoice;
+    
+    if (effectiveTheme === 'dark') {
+      html.classList.add('dark');
+    } else {
+      html.classList.remove('dark');
+    }
+
+    const metaThemeColor = document.querySelector('meta[name="theme-color"]');
+    if (metaThemeColor) {
+      metaThemeColor.setAttribute('content', effectiveTheme === 'dark' ? '#12110F' : '#EFEAE0');
+    }
+
+    themeButtons.forEach(btn => {
+      const btnTheme = btn.getAttribute('data-theme');
+      const isActive = btnTheme === themeChoice;
+      btn.classList.toggle('is-active', isActive);
+      btn.setAttribute('aria-checked', String(isActive));
+    });
+  }
+
+  const savedTheme = localStorage.getItem(STORAGE_KEY) || 'system';
+  applyTheme(savedTheme);
+
+  themeButtons.forEach(btn => {
+    btn.addEventListener('click', () => {
+      const chosenTheme = btn.getAttribute('data-theme');
+      if (!chosenTheme) return;
+      localStorage.setItem(STORAGE_KEY, chosenTheme);
+      applyTheme(chosenTheme);
+    });
+  });
+
+  if (window.matchMedia) {
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => {
+      const currentChoice = localStorage.getItem(STORAGE_KEY) || 'system';
+      if (currentChoice === 'system') {
+        applyTheme('system');
+      }
+    });
+  }
+}
 
 function initStickyHeader() {
   const header = document.querySelector('.site-header');

@@ -33,6 +33,7 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <script>
     tailwind.config = {
+      darkMode: 'class',
       theme: {
         extend: {
           colors: {
@@ -73,6 +74,140 @@
       color: #1B1A17;
       font-family: 'DM Sans', sans-serif;
       -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      transition: background-color 0.25s ease, color 0.25s ease;
+    }
+
+    html.dark body {
+      background-color: #12110F;
+      color: #EFEAE0;
+    }
+
+    html.dark .site-header {
+      background-color: rgba(18, 17, 15, 0.95);
+      border-color: #2D2B26;
+    }
+
+    html.dark .bg-cream {
+      background-color: #12110F !important;
+    }
+
+    html.dark .bg-cream-callout {
+      background-color: #201E1A !important;
+      border-color: #E8512A !important;
+    }
+
+    html.dark .border-cream-border {
+      border-color: #2D2B26 !important;
+    }
+
+    html.dark .text-charcoal {
+      color: #EFEAE0 !important;
+    }
+
+    html.dark .text-charcoal\/80 {
+      color: rgba(239, 234, 224, 0.8) !important;
+    }
+
+    html.dark .text-textMuted {
+      color: #A8A49C !important;
+    }
+
+    html.dark .border-charcoal {
+      border-color: #55524A !important;
+    }
+
+    html.dark .border-black\/5 {
+      border-color: rgba(255, 255, 255, 0.1) !important;
+    }
+
+    html.dark .bg-charcoal-card {
+      background-color: #1C1A16 !important;
+      border-color: #38352E !important;
+    }
+
+    html.dark #hero-btn-download,
+    html.dark #nav-download-btn,
+    html.dark .site-btn-primary {
+      background-color: #FFA79B !important;
+      color: #561E18 !important;
+    }
+
+    html.dark #hero-btn-download:hover,
+    html.dark #nav-download-btn:hover,
+    html.dark .site-btn-primary:hover {
+      background-color: #FF8C7C !important;
+    }
+
+    html.dark #hero-btn-zip {
+      border-color: #55524A !important;
+      color: #EFEAE0 !important;
+    }
+
+    html.dark #hero-btn-zip:hover {
+      background-color: rgba(255, 255, 255, 0.06) !important;
+    }
+
+    /* Active nav link scroll indicator in dark mode */
+    html.dark .nav-link.is-active {
+      color: #EFEAE0 !important;
+    }
+
+    /* Theme switcher segmented pill control */
+    .theme-segmented-ctrl {
+      display: inline-flex;
+      align-items: center;
+      padding: 3px;
+      border-radius: 9999px;
+      border: 1px solid rgba(0, 0, 0, 0.12);
+      background-color: rgba(0, 0, 0, 0.04);
+      gap: 2px;
+      transition: background-color 0.2s ease, border-color 0.2s ease;
+    }
+
+    html.dark .theme-segmented-ctrl {
+      border-color: rgba(255, 255, 255, 0.14);
+      background-color: rgba(255, 255, 255, 0.06);
+    }
+
+    .theme-pill-btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 30px;
+      height: 30px;
+      border-radius: 9999px;
+      color: #5E5B54;
+      transition: all 0.18s cubic-bezier(0.4, 0, 0.2, 1);
+      cursor: pointer;
+      border: none;
+      background: transparent;
+      outline: none;
+    }
+
+    .theme-pill-btn:hover {
+      color: #1B1A17;
+    }
+
+    html.dark .theme-pill-btn {
+      color: #8D8F8A;
+    }
+
+    html.dark .theme-pill-btn:hover {
+      color: #EFEAE0;
+    }
+
+    .theme-pill-btn.is-active {
+      background-color: #FFFFFF;
+      color: #E8512A;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1), 0 1px 2px rgba(0, 0, 0, 0.06);
+    }
+
+    html.dark .theme-pill-btn.is-active {
+      background-color: #2A2722;
+      color: #FFA79B;
+      box-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);
+    }
       -moz-osx-font-smoothing: grayscale;
     }
 
@@ -151,15 +286,28 @@
         <a href="#opensource" class="nav-link font-sans text-[15px] text-charcoal/80 hover:text-charcoal transition-colors">Source</a>
       </nav>
 
-      <!-- Desktop Download Button -->
-      <div class="hidden md:flex items-center">
+      <!-- Desktop Download & Theme Switcher -->
+      <div class="hidden md:flex items-center gap-4">
+        <!-- Rounded Pill Theme Switcher -->
+        <div class="theme-segmented-ctrl" role="radiogroup" aria-label="Appearance switcher">
+          <button type="button" data-theme="light" class="theme-pill-btn" title="Light theme" aria-label="Light theme" aria-checked="false" role="radio">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+          </button>
+          <button type="button" data-theme="dark" class="theme-pill-btn" title="Dark theme" aria-label="Dark theme" aria-checked="false" role="radio">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+          </button>
+          <button type="button" data-theme="system" class="theme-pill-btn" title="Follow system theme" aria-label="Follow system theme" aria-checked="false" role="radio">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/></svg>
+          </button>
+        </div>
+
         <a href="https://github.com/SubhamPro11/lockscreengtf/releases/latest" id="nav-download-btn" class="bg-charcoal hover:bg-black text-white text-[14px] font-sans font-medium px-5 py-2.5 rounded-full transition shadow-sm hover:shadow">
           Download MSI
         </a>
       </div>
 
       <!-- Mobile Menu Toggle -->
-      <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-lg text-charcoal hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-accent-orange">
+      <button id="nav-toggle" type="button" aria-expanded="false" aria-controls="mobile-nav" aria-label="Toggle navigation menu" class="md:hidden p-2 rounded-full text-charcoal hover:bg-black/5 focus:outline-none focus:ring-2 focus:ring-accent-orange">
         <svg class="w-6 h-6 menu-open-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/></svg>
         <svg class="w-6 h-6 menu-close-icon hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/></svg>
       </button>
@@ -173,7 +321,21 @@
         <a href="#requirements" class="text-charcoal hover:text-accent-orange py-1">Requirements</a>
         <a href="#troubleshooting" class="text-charcoal hover:text-accent-orange py-1">Troubleshooting</a>
         <a href="#opensource" class="text-charcoal hover:text-accent-orange py-1">Source</a>
-        <a href="https://github.com/SubhamPro11/lockscreengtf/releases/latest" class="bg-charcoal text-white text-center py-3 rounded-full font-medium mt-2">Download MSI</a>
+        <div class="flex items-center justify-between py-2 border-t border-cream-border">
+          <span class="text-sm font-sans text-charcoal/80">Appearance</span>
+          <div class="theme-segmented-ctrl" role="radiogroup" aria-label="Mobile appearance switcher">
+            <button type="button" data-theme="light" class="theme-pill-btn" title="Light theme" aria-label="Light theme" aria-checked="false" role="radio">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            </button>
+            <button type="button" data-theme="dark" class="theme-pill-btn" title="Dark theme" aria-label="Dark theme" aria-checked="false" role="radio">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+            </button>
+            <button type="button" data-theme="system" class="theme-pill-btn" title="Follow system theme" aria-label="Follow system theme" aria-checked="false" role="radio">
+              <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2" ry="2"/><path d="M8 21h8M12 17v4"/></svg>
+            </button>
+          </div>
+        </div>
+        <a href="https://github.com/SubhamPro11/lockscreengtf/releases/latest" class="bg-charcoal text-white text-center py-3 rounded-full font-medium mt-1">Download MSI</a>
       </nav>
     </div>
   </header>
@@ -390,7 +552,7 @@
                   Installs the app, registers the privileged helper, adds Start Menu shortcuts and a clean uninstaller in Windows Settings.
                 </p>
               </div>
-              <a href="https://github.com/SubhamPro11/lockscreengtf/releases/latest" id="req-btn-msi" class="bg-accent-orange hover:bg-accent-hover text-white text-sm font-sans font-medium px-6 py-3 rounded-xl transition inline-block self-start shadow-sm">
+              <a href="https://github.com/SubhamPro11/lockscreengtf/releases/latest" id="req-btn-msi" class="bg-accent-orange hover:bg-accent-hover text-white text-sm font-sans font-medium px-6 py-3 rounded-full transition inline-block self-start shadow-sm">
                 Download MSI (x64)
               </a>
             </div>
@@ -406,7 +568,7 @@
                   Extract anywhere and launch LockscreenGif.exe. The privileged helper asks for UAC elevation the first time you run it.
                 </p>
               </div>
-              <a href="https://github.com/SubhamPro11/lockscreengtf/releases/latest" id="req-btn-zip" class="border border-[#55524A] hover:bg-white/5 text-cream text-sm font-sans font-medium px-6 py-3 rounded-xl transition inline-block self-start">
+              <a href="https://github.com/SubhamPro11/lockscreengtf/releases/latest" id="req-btn-zip" class="border border-[#55524A] hover:bg-white/5 text-cream text-sm font-sans font-medium px-6 py-3 rounded-full transition inline-block self-start">
                 Portable ZIP
               </a>
             </div>
@@ -422,7 +584,7 @@
           <div class="bg-charcoal-card border border-charcoal-border rounded-2xl p-6">
             <div class="flex items-center justify-between mb-3">
               <span class="font-mono text-xs uppercase tracking-wider text-textLightMuted">VERIFY THE SHA256 HASH &middot; POWERSHELL</span>
-              <button class="btn-copy-code text-xs font-mono text-textLightMuted hover:text-cream transition flex items-center gap-1.5 focus:outline-none" data-copy-target="cmd-hash" aria-label="Copy hash verification command">
+              <button class="btn-copy-code text-xs font-mono text-textLightMuted hover:text-cream transition flex items-center gap-1.5 px-3 py-1 rounded-full border border-charcoal-border hover:border-accent-orange bg-charcoal-code/50 focus:outline-none" data-copy-target="cmd-hash" aria-label="Copy hash verification command">
                 <span class="copy-icon">copy</span>
                 <span class="check-icon hidden text-accent-orange font-medium">copied</span>
               </button>
@@ -650,7 +812,7 @@
         <div class="bg-charcoal text-cream rounded-2xl p-7 sm:p-8 border border-charcoal-divider">
           <div class="flex items-center justify-between mb-4">
             <span class="font-mono text-xs uppercase tracking-wider text-textLightMuted">BUILD FROM SOURCE &middot; POWERSHELL &middot; .NET 10 + WINUI 3</span>
-            <button id="btn-copy-build" class="btn-copy-code text-xs font-mono text-textLightMuted hover:text-cream transition flex items-center gap-1.5 focus:outline-none" data-copy-target="cmd-build" aria-label="Copy build commands">
+            <button id="btn-copy-build" class="btn-copy-code text-xs font-mono text-textLightMuted hover:text-cream transition flex items-center gap-1.5 px-3 py-1 rounded-full border border-charcoal-border hover:border-accent-orange bg-charcoal-code/50 focus:outline-none" data-copy-target="cmd-build" aria-label="Copy build commands">
               <span class="copy-icon">copy</span>
               <span class="check-icon hidden text-accent-orange font-medium">copied</span>
             </button>

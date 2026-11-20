@@ -16,3 +16,7 @@ node_modules/
 # Agent customizations
 .agents/
 .agent/
+
+# Local MCP config
+.mcp.json
+
